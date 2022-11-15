@@ -1,13 +1,13 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import MyMap from "./my-map";
 
 function App() {
   return (
       <BrowserRouter>
         <div className="container">
-          <h1>Web Development Project</h1>
           <Routes>
-            <Route/>
+            <Route path="/*" element={<MyMap/>}/>
           </Routes>
         </div>
       </BrowserRouter>
