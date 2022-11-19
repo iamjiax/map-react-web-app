@@ -5,7 +5,6 @@ import LocationMarker from "./location-marker";
 import SearchControl from "./search-control";
 
 function MyMap() {
-
   return (
       <MapContainer
           center={[47.6, -122.3]}
