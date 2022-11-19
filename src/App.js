@@ -1,17 +1,28 @@
 import './App.css';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import MyMap from "./my-map";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {configureStore} from '@reduxjs/toolkit';
+import {Provider} from 'react-redux';
+import userReducer from './reducers/user-reducer';
+import MyMap from "./components/my-map";
+import LoginPage from "./components/login";
+import ProfilePage from "./components/profile";
+
+const store = configureStore(
+    {
+      reducer: {user: userReducer}
+    });
 
 function App() {
-
   return (
-      <BrowserRouter>
-        <div>
+      <Provider store={store}>
+        <BrowserRouter>
           <Routes>
             <Route path="/*" element={<MyMap/>}/>
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/profile" element={<ProfilePage/>}/>
           </Routes>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
   );
 }
 
