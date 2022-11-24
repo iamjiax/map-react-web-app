@@ -9,7 +9,7 @@ import ProfilePage from "./components/profile";
 
 const store = configureStore(
     {
-      reducer: {user: userReducer}
+      reducer: {userReducer: userReducer}
     });
 
 function App() {

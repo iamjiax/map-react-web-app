@@ -10,11 +10,15 @@ const SearchControl = () => {
     propertyLoc: ['lat','lon'],
     marker: L.marker([0,0]),
     autoCollapse: true,
-    autoType: false,
+    autoType: true,
+    collapsed: false,
     minLength: 2,
     zoom: 15,
   });
   ls.addTo(map);
+  ls.on("search:locationfound", (e)=> {
+    console.log(e);
+  })
 }
 
 export default SearchControl;

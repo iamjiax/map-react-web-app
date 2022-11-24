@@ -6,9 +6,10 @@ const LocationControl = () => {
   const map = useMap();
   const lc = L.control.locate({
     strings: {
-      title: "Show me where I am, yo!"
+      title: "You are here!"
     },
     keepCurrentZoomLevel: true,
+    position: "bottomright"
     // initialZoomLevel: 13,
   });
   lc.addTo(map);
