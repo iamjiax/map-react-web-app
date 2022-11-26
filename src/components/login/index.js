@@ -1,9 +1,22 @@
+import Login from "./login";
+import Register from "./register";
+
+import { useLocation } from 'react-router-dom'
+
 function LoginPage() {
-  return (
-      <div className={"container"}>
-        <h1>Login Page</h1>
-      </div>
-  );
+    const location = useLocation();
+    //if(location.pathname ===)
+    console.log(location.pathname);
+
+    if(location.pathname === "/login") {
+        return (
+            <Login/>
+        );
+    } else  if(location.pathname === "/register") {
+        return (
+            <Register/>
+        );
+    }
 }
 
 export default LoginPage;

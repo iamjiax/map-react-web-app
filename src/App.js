@@ -26,6 +26,7 @@ function App() {
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/details/:xid" element={<DetailsPage/>}/>
+            <Route path="/register" element={<LoginPage/>}/>
           </Routes>
         </BrowserRouter>
       </Provider>
