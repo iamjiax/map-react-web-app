@@ -7,7 +7,10 @@ const SearchComponent = () => {
   return (
       <div>
         <SearchControl/>
-        <SearchResults/>
+        {/*<SearchResults/>*/}
+        <Routes>
+          <Route path="/search" element={<SearchResults/>}/>
+        </Routes>
       </div>
   );
 }
