@@ -1,19 +1,41 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Marker, Popup} from "react-leaflet";
-import {Link} from "react-router-dom";
+import {Marker, Popup, useMapEvents} from "react-leaflet";
+import {Link, useSearchParams} from "react-router-dom";
+import {useEffect} from "react";
+import {findPlacesByLocThunk} from "../../services/places-thunks";
 
 const SearchResults = () => {
-  const {places, placesLoaded} = useSelector(state => state.placesReducer);
+  const map = useMapEvents({
+    moveend() {
+      setSearchParams({
+        "zoom": map.getZoom(),
+        "lat": map.getCenter().lat,
+        "lng": map.getCenter().lng
+      });
+    }
+  });
 
+  const {places, placesLoaded} = useSelector(state => state.placesReducer);
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
+  useEffect(() => {
+    if (lat && lng) {
+      dispatch(findPlacesByLocThunk({lat, lng}));
+    }
+  }, [searchParams]);
   return (
       places.map(place =>
-          <Marker key={place.xid} position={place.point}
+          <Marker key={place.xid}
+                  autoPan={false}
+                  position={place.point}
                   eventHandlers={{
                     popupopen: (e) => {
                       console.log(e)
                     }
                   }}>
-            <Popup>
+            <Popup autoPan={false}>
               <PlaceCard place={place}/>
             </Popup>
           </Marker>
