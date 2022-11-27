@@ -1,12 +1,16 @@
 import Login from "./login";
 import Register from "./register";
-
-import { useLocation } from 'react-router-dom'
+import {useSelector} from "react-redux";
+import {Navigate, useLocation} from "react-router-dom";
 
 function LoginPage() {
+    const {currentUser} = useSelector(state => state.userReducer);
+
     const location = useLocation();
-    //if(location.pathname ===)
-    console.log(location.pathname);
+
+    if(currentUser){
+        return (<Navigate to={'/'}/>)
+    }
 
     if(location.pathname === "/login") {
         return (

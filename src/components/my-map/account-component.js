@@ -1,12 +1,20 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import {useMap} from "react-leaflet";
+import {logoutThunk} from "../../services/user-thunks";
 
 const AccountComponent = () => {
-  const {user, loggedIn} = useSelector(state => state.userReducer);
+  const {currentUser} = useSelector(state => state.userReducer);
   const [displayProfile, setDisplayProfile] = useState(false);
   const map = useMap();
+
+    const dispatch = useDispatch();
+
+    const handleLogoutBtn = () => {
+        dispatch(logoutThunk())
+    }
+
   return (
       <div className="leaflet-control leaflet-top leaflet-right"
            onMouseOver={() => {
@@ -16,28 +24,28 @@ const AccountComponent = () => {
              map._handlers.forEach(handler => handler.enable())
            }}>
         {/****Login Button****/}
-        {!loggedIn &&
+        {!currentUser &&
             <Link to="login"
                   className="leaflet-bar leaflet-control btn btn-primary">
               <span className="text-white fw-bold">Login</span>
             </Link>
         }
         {/****Welcome Button****/}
-        {loggedIn &&
+        {currentUser &&
             <div
                 className="leaflet-bar leaflet-control btn btn-success"
                 onClick={() => setDisplayProfile(!displayProfile)}
             >
-              {`Welcome, ${user.name}`}
+              {`Welcome, ${currentUser.username}`}
             </div>}
         {/****Profile****/}
-        {loggedIn &&
+        {currentUser &&
             <div
                 className={`leaflet-control ${displayProfile ? "" : "d-none"}`}>
               <div className="card overflow-scroll mt-3 me-5"
                    style={{width: "24rem", maxHeight: "70vh"}}>
                 <div className="card-header">
-                  <h6 className="mb-0">{user.name} ({user.email})</h6>
+                  <h6 className="mb-0">{currentUser.username} ({currentUser.email})</h6>
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">Profile Content</h5>
@@ -54,7 +62,11 @@ const AccountComponent = () => {
                     Manage your Account
                   </Link>
                   <div to="profile" className="btn btn-primary text-white ms-5">
-                    Logout
+                      <button
+                          onClick={handleLogoutBtn}
+                          className="btn btn-primary">
+                          Logout
+                      </button>
                   </div>
                 </div>
               </div>

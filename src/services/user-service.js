@@ -1,5 +1,7 @@
-import axios from 'aos';
+import axios from 'axios';
 import {Constants} from "../util/constants";
+
+const BASE_URL = 'http://localhost:4000'
 
 export const createUser = async (user) => {
   const response = await axios.post(Constants.USER_API, user)
@@ -12,17 +14,17 @@ export const findUser = async () => {
 }
 
 export const register = async (user) => {
-  const response = await axios.post(Constants.USER_API, user)
+  const response = await axios.post(`http://localhost:4000/api/register`, user)
   return response.data
 }
 
 export const login = async (user) => {
-  const response = await axios.post(Constants.USER_API, user)
+  const response = await axios.post("http://localhost:4000/api/login", user)
   return response.data
 }
 
 export const logout = async () => {
-  const response = await axios.post(Constants.USER_API)
+  const response = await axios.post("http://localhost:4000/api/logout")
   return response.data
 }
 
