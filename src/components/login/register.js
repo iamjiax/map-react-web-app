@@ -1,17 +1,19 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../../services/user-thunks";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
-    const [username, setUsername] = useState('')
-    const [firstname, setFirstname] = useState('')
-    const [lastname, setLastname] = useState('')
-    const [email, setEmail] = useState('')
-    const [birth, setBirth] = useState('')
-    const [password, setPassword] = useState('')
-    const [validatePassword, setValidatePassword] = useState('')
-    const [error, setError] = useState(null)
-    const dispatch = useDispatch()
+    const [username, setUsername] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [email, setEmail] = useState('');
+    const [birth, setBirth] = useState('');
+    const [password, setPassword] = useState('');
+    const [validatePassword, setValidatePassword] = useState('');
+    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+
     const handleRegisterBtn = () => {
         if (password !== validatePassword) {
             setError('Passwords must match')
@@ -113,7 +115,7 @@ const Register = () => {
             <div className= "">
                 <ul>
                     <a href="/login">
-                        Login instead
+                        Please Login
                     </a>
                 </ul>
             </div>

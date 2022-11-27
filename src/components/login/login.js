@@ -1,14 +1,16 @@
 import {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {loginThunk } from "../../services/user-thunks";
+import {loginThunk} from "../../services/user-thunks";
 
 const Login = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState(null)
-    const dispatch = useDispatch()
+    const {userServiceError} = useSelector(state => state.userReducer);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
+
     const handleLoginBtn = () => {
-        setError(null)
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
     }
@@ -16,9 +18,9 @@ const Login = () => {
         <>
             <h2 >Login Use your Account</h2>
             {
-                error &&
+                userServiceError &&
                 <div className="alert alert-danger">
-                    {error}
+                    {userServiceError}
                 </div>
             }
             <form className= "form-horizontal">
@@ -48,7 +50,6 @@ const Login = () => {
 
             </form>
 
-
             <button
                 onClick={handleLoginBtn}
                 className="btn btn-primary">
@@ -57,11 +58,9 @@ const Login = () => {
 
             <div>
                 <ul>
-                    <li>
-                        <a href="/register">
-                            Reigster new account
-                        </a>
-                    </li>
+                    <a href="/register">
+                        Register new account
+                    </a>
                 </ul>
             </div>
 
