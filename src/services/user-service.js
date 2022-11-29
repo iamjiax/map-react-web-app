@@ -29,5 +29,6 @@ export const logout = async () => {
 }
 
 export const deleteUser = async (uid) => {}
+
 export const updateUser = async (uid, userUpdates) => {}
 

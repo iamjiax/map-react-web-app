@@ -4,6 +4,7 @@ import {registerThunk} from "../../services/user-thunks";
 import {Link, useNavigate} from "react-router-dom";
 import './register.css';
 
+
 const Register = () => {
     const [username, setUsername] = useState('');
     const [firstname, setFirstname] = useState('');
@@ -28,6 +29,7 @@ const Register = () => {
             <div className="card col-12 col-lg-4 login-card mt-5  mx-auto">
 
                 <div className="card-header"> <h2>Register a Map Account</h2></div>
+        
             {
                 error &&
                 <div className="alert alert-danger">

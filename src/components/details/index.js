@@ -1,3 +1,6 @@
+
+
+
 function DetailsPage() {
   return (
       <div className={"container"}>

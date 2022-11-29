@@ -1,11 +1,24 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {logoutThunk, findUserThunk, loginThunk, registerThunk} from "../services/user-thunks";
 
+import {UserRoles} from "../util/user-roles";
+
+
 const userSlice = createSlice({
   name: 'users',
   initialState: {
     currentUser: null,
-    userServiceError: null
+
+    userServiceError: null,
+    /** the following part is placeholder **/
+    loggedIn: true,
+    user: {
+      name: "Jia",
+      email:"xu.jia3@northeastern.edu",
+      role: UserRoles.ADMIN
+    }
+    /** ******************************** **/
+
   },
   reducers: {},
   extraReducers: {

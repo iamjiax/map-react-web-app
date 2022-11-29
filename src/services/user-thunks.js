@@ -20,4 +20,6 @@ export const logoutThunk = createAsyncThunk(
 export const loginThunk = createAsyncThunk(
     'login',
     async (user) => await login(user)
+
 )
+
