@@ -21,7 +21,7 @@ const Register = () => {
             return
         }
         setError(null)
-        const newUser = {username, password}
+        const newUser = {username,password,email}
         dispatch(registerThunk(newUser))
     }
     return(
