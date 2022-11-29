@@ -22,7 +22,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-
+            <Route path="/*" element={<MyMap/>}/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/details/:xid" element={<DetailsPage/>}/>
