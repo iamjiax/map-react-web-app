@@ -1,14 +1,14 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../../services/user-thunks";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import './register.css';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
-    const [birth, setBirth] = useState('');
     const [password, setPassword] = useState('');
     const [validatePassword, setValidatePassword] = useState('');
     const [error, setError] = useState(null);
@@ -25,7 +25,9 @@ const Register = () => {
     }
     return(
         <>
-            <h2>Register new account</h2>
+            <div className="card col-12 col-lg-4 login-card mt-5  mx-auto">
+
+                <div className="card-header"> <h2>Register a Map Account</h2></div>
             {
                 error &&
                 <div className="alert alert-danger">
@@ -33,91 +35,122 @@ const Register = () => {
                 </div>
             }
 
-            <form className= "needs-validation">
-                <div className= "form-group pt-4">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">User name</label>
+            <form className="container">
+                <div className="form-check"></div>
+                <div className= "form-group text-left">
+                        <label htmlFor="exampleInputUserName1">User Name</label>
                         <input
+                            type="text"
                             className="form-control mb-2"
+                            id="username"
+                            placeholder="UserName"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}/>
-                    </div>
+
                 </div>
 
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">First name</label>
+                <div className= "form-group text-left">
+
+                        <label htmlFor="exampleInputFirstName1">First name</label>
                         <input
+                            type="text"
                             className="form-control mb-2"
+                            id="firstname"
+                            placeholder="FirstName"
                             value={firstname}
                             onChange={(e) => setFirstname(e.target.value)}/>
-                    </div>
+
                 </div>
 
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">Last name</label>
+                <div className= "form-group text-left">
+
+                        <label htmlFor="exampleInputLastName1">Last name</label>
                         <input
+                            type="text"
                             className="form-control mb-2"
+                            id="lastname"
+                            placeholder="LastName"
                             value={lastname}
                             onChange={(e) => setLastname(e.target.value)}/>
-                    </div>
+
                 </div>
 
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">Email</label>
+                <div className= "form-group text-left">
+
+                        <label htmlFor="exampleInputEmail1">Email</label>
                         <input
+                            type="email"
                             className="form-control mb-2"
+                            id="email"
+                            aria-describedby="emailHelp"
+                            placeholder="Enter Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}/>
-                    </div>
+                        <small id="emailHelp" className="form-text text-muted"> You can use letter, number & periods.</small>
+
                 </div>
 
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">Date of Birth</label>
-                        <input
-                            type= "date"
-                            className="form-control mb-2"
-                            value={birth}
-                            onChange={(e) => setBirth(e.target.value)}/>
-                    </div>
-                </div>
+                <div className= "form-group text-left">
 
-
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">Password</label>
+                        <label htmlFor="exampleInputPassword1">Password</label>
                         <input
+                            type="password"
                             className="form-control mb-2"
+                            id="password"
+                            aria-describedby="passwordHelp"
+                            placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
+
+                    <small id="passwordHelp" className="form-text text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</small>
                 </div>
 
-                <div className= "form-row">
-                    <div className= "col-md-4 mb-3">
-                        <label htmlFor="validationCustom01">Validate Password</label>
+                <div className= "form-group text-left">
+
+                        <label htmlFor="exampleInputPassword1">Confirm Password</label>
                         <input
+                            type="password"
                             className="form-control mb-2"
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
                             value={validatePassword}
                             onChange={(e) => setValidatePassword(e.target.value)}/>
-                    </div>
+
                 </div>
+
+                <div className="roleSection">
+                    <label htmlFor="roleSelectId">Select a role</label>
+                    <select
+                        defaultValue={"Role"}
+                        className="form-select"
+                        type="form-control"
+                        id="roleSelectId"
+                    >
+                        <option>Admin</option>
+                        <option>Visitor</option>
+                        <option>Manager</option>
+                    </select>
+                </div>
+                <div className="form-check"></div>
             </form>
 
-            <button
-                onClick={handleRegisterBtn}
-                className="btn btn-primary">
-                Register
-            </button>
-            <div className= "">
-                <ul>
-                    <a href="/login">
-                        Please Login
-                    </a>
-                </ul>
+            <center>
+                <button
+                    type="submit"
+                    onClick={handleRegisterBtn}
+                    className="btn btn-primary">
+                    Register
+                </button>
+                <div className= "mt-2">
+                    <small className="form-text text-muted"> Already have an account? </small>
+                    <Link to ="/login">
+                        Login Here
+                    </Link>
+                 </div>
+            </center>
+                <div className="footer align-content-center">
+                    Copyright ⓒ 2022 Designed by @Map, Inc.
+                </div>
             </div>
         </>
     )

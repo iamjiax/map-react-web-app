@@ -1,0 +1,18 @@
+.login-card {
+    min-height: 50vh;
+    height: 25rem;
+    width: 35rem;
+    background-image: url("../../images/background4.png");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.registerMessage {
+    margin-top: 4vh;
+}
+
+.footer {
+    margin-top: 10%;
+    color: #dcdcdc;
+    text-align: center;
+}
