@@ -8,6 +8,7 @@ import MyMap from "./components/my-map";
 import LoginPage from "./components/login";
 import ProfilePage from "./components/profile";
 import DetailsPage from "./components/details";
+import EditProfilePage from "./components/profile/edit-profile";
 
 const store = configureStore(
     {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/*" element={<MyMap/>}/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/profile" element={<ProfilePage/>}/>
+            <Route path="/profile/edit-profile" element={<EditProfilePage/>}/>
             <Route path="/details/:xid" element={<DetailsPage/>}/>
             <Route path="/register" element={<LoginPage/>}/>
           </Routes>

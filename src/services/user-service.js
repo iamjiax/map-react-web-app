@@ -30,5 +30,8 @@ export const logout = async () => {
 
 export const deleteUser = async (uid) => {}
 
-export const updateUser = async (uid, userUpdates) => {}
-
+export const updateUser = async (userUpdates) => {
+  // const response = await axios.put(`${BASE_URL}/${api}/${uid}`, userUpdates)
+  const response = await axios.put("http://localhost:4000/api/users/" + userUpdates._id, userUpdates)
+  return response.data
+}

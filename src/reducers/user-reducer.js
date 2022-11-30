@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {logoutThunk, findUserThunk, loginThunk, registerThunk} from "../services/user-thunks";
-
+import {logoutThunk, findUserThunk, loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
 import {UserRoles} from "../util/user-roles";
 
 
@@ -13,8 +12,11 @@ const userSlice = createSlice({
     /** the following part is placeholder **/
     loggedIn: true,
     user: {
-      name: "Jia",
+      firstName: "Jia",
+      lastName: "Xu",
       email:"xu.jia3@northeastern.edu",
+      dateOfBirth: '11/11/1991',
+      location: "Seattle, WA",
       role: UserRoles.ADMIN
     }
     /** ******************************** **/
@@ -43,6 +45,11 @@ const userSlice = createSlice({
     [logoutThunk.fulfilled]: (state, action) => {
       state.currentUser = null
     },
+    [updateUserThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+      console.log(action.payload)
+      console.log(state.currentUser)
+    }
   }
 });
 
