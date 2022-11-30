@@ -4,6 +4,7 @@ import {Marker, Popup, useMapEvents} from "react-leaflet";
 import {Link, useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 import {findPlacesByLocThunk} from "../../services/places-thunks";
+import {formatKinds} from "../../util/format";
 
 const SearchResults = () => {
   const map = useMapEvents({
@@ -57,12 +58,5 @@ const PlaceCard = ({place}) => {
       </div>
   );
 };
-
-const formatKinds = (kindsStr) => {
-  return kindsStr.split(",")[0]
-  .split("_")
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
-}
 
 export default SearchResults;

@@ -11,7 +11,7 @@ export const findPlacesByLoc = async ({lat, lng}) => {
 }
 
 export const findPlaceByXid = async (xid) => {
-  const url = `${OTM_API_XID}/${xid}`;
+  const url = `${OTM_API_XID}/${xid}?apikey=${Constants.OTM_API_KEY}`;
   const response = await axios.get(url);
   return response.data;
 }
