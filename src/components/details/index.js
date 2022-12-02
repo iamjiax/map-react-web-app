@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {findPlaceByXidThunk} from "../../services/places-thunks";
 import parse from 'html-react-parser';
 import {extractUrl, formatKinds} from "../../util/format";
@@ -9,10 +9,16 @@ import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 
 
 function DetailsPage() {
+  const {currentUser} = useSelector(state => state.userReducer);
   const {placeLikesCount} = useSelector(state => state.likesReducer);
   const {placeDetail, detailLoaded} = useSelector(state => state.placeDetailReducer);
   const dispatch = useDispatch();
   const {xid} = useParams();
+
+  const [review, setReview] = useState("");
+  const handlePostReviewBtn = () => {
+
+  };
 
   useEffect(() => {
     dispatch(findPlaceByXidThunk(xid));
@@ -52,7 +58,11 @@ function DetailsPage() {
               <h5>Reviews from local service</h5>
             </div>
             <div>
-              <h5>Add Review</h5>
+              <textarea className="form-control"
+                        onChange={(e) => setReview(e.target.value)}
+
+              ></textarea>
+              <button onClick={handlePostReviewBtn}>Post Review</button>
             </div>
           </div>
       )

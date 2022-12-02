@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {Constants} from "../util/constants";
 
+const api = axios.create({withCredentials: true});
+
 export const findLike = async (uid, xid) => {
   const url = `${Constants.LIKES_API}/user/${uid}/place/${xid}`;
   const response = await axios.get(url);
