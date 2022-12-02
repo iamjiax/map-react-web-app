@@ -1,15 +1,17 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore,} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import userReducer from './reducers/user-reducer';
 import placesReducer from "./reducers/places-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";
+import likesReducer from "./reducers/likes-reducer";
 import MyMap from "./components/my-map";
 import LoginPage from "./components/login";
 import ProfilePage from "./components/profile";
 import DetailsPage from "./components/details";
 import EditProfilePage from "./components/profile/edit-profile";
+
 
 const store = configureStore(
     {
@@ -17,7 +19,12 @@ const store = configureStore(
         userReducer: userReducer,
         placesReducer: placesReducer,
         placeDetailReducer: placeDetailReducer,
-      }
+        likesReducer: likesReducer
+      },
+      middleware: getDefaultMiddleware =>
+          getDefaultMiddleware({
+            serializableCheck: false,
+          })
     });
 
 function App() {

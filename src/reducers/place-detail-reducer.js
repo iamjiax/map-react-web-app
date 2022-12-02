@@ -12,7 +12,6 @@ const placeDetailSlice = createSlice({
   extraReducers: {
     [findPlaceByXidThunk.pending]:
         (state) => {
-          console.log("loading details...");
           state.detailLoaded = false;
           state.placeDetail = null;
         },
@@ -25,7 +24,7 @@ const placeDetailSlice = createSlice({
     [findPlaceByXidThunk.rejected]:
         (state) => {
           state.detailLoaded = false;
-          console.log("rejected");
+          console.log("Loading place detail rejected.");
         }
   }
 });

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import UserLikesComponent from "./user-likes-component";
 
 const ProfilePage = () => {
   const userInfo = useSelector(state => state.userReducer.currentUser);
@@ -69,7 +70,7 @@ const ProfilePage = () => {
                     <div className="form-control mb-2">{userInfo?.bio}</div>
                   </div>
                 </div>
-
+                <UserLikesComponent/>
               </form>
               {/* determinate different user roles */}
               {
