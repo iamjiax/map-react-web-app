@@ -6,18 +6,24 @@ import parse from 'html-react-parser';
 import {extractUrl, formatKinds} from "../../util/format";
 import LikeIcon from "./like-icon";
 import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
-
+import {createReviewThunk} from "../../services/reviews-thunk";
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
   const {placeLikesCount} = useSelector(state => state.likesReducer);
-  const {placeDetail, detailLoaded} = useSelector(state => state.placeDetailReducer);
+  const {placeDetail, detailLoaded} = useSelector(
+      state => state.placeDetailReducer);
   const dispatch = useDispatch();
   const {xid} = useParams();
 
-  const [review, setReview] = useState("");
+  const [reviewContent, setReviewContent] = useState("");
   const handlePostReviewBtn = () => {
-
+    const newReview = {
+      user: currentUser._id,
+      place: xid,
+      content: reviewContent
+    }
+    dispatch(createReviewThunk(newReview));
   };
 
   useEffect(() => {
@@ -37,14 +43,21 @@ function DetailsPage() {
                 <div className="ms-2">{placeLikesCount}</div>
               </div>
             </div>
-            <h5>{formatKinds(placeDetail.kinds)}</h5>
-            <div className="text-center">
-              <img src={placeDetail.preview.source}
-                   style={{width: "auto", maxWidth: "100%", height: "auto"}}/>
+            <p>{formatKinds(placeDetail.kinds)}</p>
+
+            <div className="row">
+              <div className="col">
+                {parse(placeDetail.wikipedia_extracts.html)}
+              </div>
+              <div className="col">
+                <img src={placeDetail.preview.source}
+                     style={{
+                       width: "auto", maxWidth: "100%", height: "auto"
+                     }}/>
+              </div>
             </div>
-            <div>
-              {parse(placeDetail.wikipedia_extracts.html)}
-            </div>
+
+
             <a href={placeDetail.wikipedia}>Wikipedia</a>
             <div>
               {placeDetail.url && <a
@@ -57,13 +70,13 @@ function DetailsPage() {
             <div>
               <h5>Reviews from local service</h5>
             </div>
-            <div>
+            {currentUser &&
+                <div>
               <textarea className="form-control"
-                        onChange={(e) => setReview(e.target.value)}
-
+                        onChange={(e) => setReviewContent(e.target.value)}
               ></textarea>
-              <button onClick={handlePostReviewBtn}>Post Review</button>
-            </div>
+                  <button onClick={handlePostReviewBtn}>Post Review</button>
+                </div>}
           </div>
       )
   );
