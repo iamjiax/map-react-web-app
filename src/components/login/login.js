@@ -11,10 +11,11 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleLoginBtn = () => {
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
+        navigate(-1)
     }
     return(
         <>

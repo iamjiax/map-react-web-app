@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import {
   findLikesByUserThunk,
 } from "../../../services/likes-thunk";
+import {Link} from "react-router-dom";
 
 const UserLikesComponent = () => {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -18,7 +19,7 @@ const UserLikesComponent = () => {
       <div>
         <h3>user favorite places</h3>
         <ul className="list-group">
-          {userLikes.map(like => <PlaceItem key={like.place} place={like.place}/>)}
+          {userLikes.map(like => <PlaceItem key={like.place.xid} place={like.place}/>)}
         </ul>
       </div>
   )
@@ -27,7 +28,7 @@ const UserLikesComponent = () => {
 const PlaceItem = ({place}) => {
   return (
       <li className="list-group-item">
-        {place}
+        <Link to={`/details/${place.xid}`}>{place.name}</Link>
       </li>
   );
 };

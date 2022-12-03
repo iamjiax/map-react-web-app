@@ -7,6 +7,7 @@ import {extractUrl, formatKinds} from "../../util/format";
 import LikeIcon from "./like-icon";
 import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 import {createReviewThunk} from "../../services/reviews-thunk";
+import PlaceReviewsList from "./place-reviews-list";
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -19,11 +20,12 @@ function DetailsPage() {
   const [reviewContent, setReviewContent] = useState("");
   const handlePostReviewBtn = () => {
     const newReview = {
-      user: currentUser._id,
-      place: xid,
+      user: {_id: currentUser._id, username: currentUser.username},
+      place: {xid: placeDetail.xid, name: placeDetail.name},
       content: reviewContent
     }
     dispatch(createReviewThunk(newReview));
+    setReviewContent("");
   };
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function DetailsPage() {
                 <h3>{placeDetail.name}</h3>
               </div>
               <div className="col-2 d-flex align-items-center">
-                <LikeIcon xid={xid}/>
+                <LikeIcon place={placeDetail}/>
                 <div className="ms-2">{placeLikesCount}</div>
               </div>
             </div>
@@ -67,16 +69,16 @@ function DetailsPage() {
             <div>
               <h5>Place Information from manager</h5>
             </div>
-            <div>
-              <h5>Reviews from local service</h5>
-            </div>
+
             {currentUser &&
                 <div>
               <textarea className="form-control"
                         onChange={(e) => setReviewContent(e.target.value)}
+                        value={reviewContent}
               ></textarea>
-                  <button onClick={handlePostReviewBtn}>Post Review</button>
+                  <button className="btn btn-primary" onClick={handlePostReviewBtn}>Post Review</button>
                 </div>}
+            <PlaceReviewsList/>
           </div>
       )
   );

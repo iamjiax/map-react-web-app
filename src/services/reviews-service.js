@@ -8,3 +8,9 @@ export const createReview = async (review) => {
   const response = await axios.post(url, review);
   return response.data;
 }
+
+export const findReviewsByPlace = async (xid) => {
+  const url = `${Constants.REVIEWS_API}/place/${xid}`;
+  const response = await axios.get(url);
+  return response.data;
+}

@@ -9,11 +9,11 @@ const AccountComponent = () => {
   const [displayProfile, setDisplayProfile] = useState(false);
   const map = useMap();
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleLogoutBtn = () => {
-        dispatch(logoutThunk())
-    }
+  const handleLogoutBtn = () => {
+    dispatch(logoutThunk())
+  }
 
   return (
       <div className="leaflet-control leaflet-top leaflet-right"
@@ -61,13 +61,11 @@ const AccountComponent = () => {
                   <Link to="profile" className="btn btn-primary text-white">
                     Manage your Account
                   </Link>
-                  <div to="profile" className="btn btn-primary text-white ms-5">
-                      <button
-                          onClick={handleLogoutBtn}
-                          className="btn btn-primary">
-                          Logout
-                      </button>
-                  </div>
+                  <button
+                      onClick={handleLogoutBtn}
+                      className="btn btn-primary ms-5">
+                    Logout
+                  </button>
                 </div>
               </div>
             </div>}

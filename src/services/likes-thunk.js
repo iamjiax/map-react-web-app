@@ -17,11 +17,11 @@ export const findLikesByUserThunk = createAsyncThunk(
 );
 
 export const userLikePlaceThunk = createAsyncThunk(
-    'likes/userLikePlace', async ({uid, xid}) =>
-        await service.userLikePlace(uid, xid)
+    'likes/userLikePlace', async (like) =>
+        await service.createLike(like)
 );
 
 export const userUnlikePlaceThunk = createAsyncThunk(
-    'likes/userUnlikePlace', async ({uid, xid}) =>
-        await service.userUnlikePlace(uid, xid)
+    'likes/userUnlikePlace', async (like) =>
+        await service.deleteLike(like)
 );

@@ -21,13 +21,15 @@ export const findLikesByUser = async (uid) => {
   return response.data;
 };
 
-export const userLikePlace = async (uid, xid) => {
-  const url = `${Constants.LIKES_API}/user/${uid}/place/${xid}`;
-  const response = await axios.post(url);
+export const createLike= async (like) => {
+  const url = `${Constants.LIKES_API}`;
+  const response = await axios.post(url, like);
   return response.data;
 }
 
-export const userUnlikePlace = async (uid, xid) => {
+export const deleteLike = async (like) => {
+  const uid = like.user._id;
+  const xid = like.place.xid;
   const url = `${Constants.LIKES_API}/user/${uid}/place/${xid}`;
   const response = await axios.delete(url);
   return response.data;

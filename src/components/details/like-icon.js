@@ -8,12 +8,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 
-const LikeIcon = ({xid}) => {
+const LikeIcon = ({place}) => {
   const {currentUser} = useSelector(state => state.userReducer);
   const {userLikePlace} = useSelector(state => state.likesReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const {xid, name} = place;
   useEffect(() => {
     if (currentUser) {
       dispatch(findLikeThunk({uid: currentUser._id, xid: xid}))
@@ -26,8 +26,12 @@ const LikeIcon = ({xid}) => {
 
   const toggleLikePlaceHandler = () => {
     if (currentUser) {
-      userLikePlace ? dispatch(userUnlikePlaceThunk({uid: currentUser._id, xid: xid})) :
-          dispatch(userLikePlaceThunk({uid: currentUser._id, xid: xid}));
+      const likeToToggle = {
+        user: {_id: currentUser._id, username: currentUser.username},
+        place: {xid: xid, name: name},
+      }
+      userLikePlace ? dispatch(userUnlikePlaceThunk(likeToToggle)) :
+          dispatch(userLikePlaceThunk(likeToToggle));
     } else {
       navigate('/login');
     }
