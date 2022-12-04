@@ -3,6 +3,8 @@ import {Constants} from "../util/constants";
 
 const BASE_URL = 'http://localhost:4000'
 
+const api = axios.create({withCredentials:true});
+
 export const createUser = async (user) => {
   const response = await axios.post(Constants.USER_API, user)
   return response.data;

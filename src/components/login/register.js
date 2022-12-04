@@ -5,6 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import './register.css';
 
 
+
 const Register = () => {
     const [username, setUsername] = useState('');
     const [firstname, setFirstname] = useState('');
@@ -21,8 +22,10 @@ const Register = () => {
             return
         }
         setError(null)
-        const newUser = {username, password}
+        const newUser = {username, password, email}
         dispatch(registerThunk(newUser))
+        //if (currentUser){
+        //return (<Navigate to = {'/profile'}/>)}
     }
     return(
         <>
