@@ -47,7 +47,10 @@ function DetailsPage() {
                        src={placeDetail.preview.source} alt="..."/>
                       </div>
                       <div className="heading col-3 d-flex align-items-center">
-                        <h3>{placeDetail.name}</h3>
+                          <div className= "">
+                              <h3>{placeDetail.name}</h3>
+                          </div>
+
                           <div className="likes col-2 d-flex align-items-center">
                           <LikeIcon place={placeDetail}/>
                           <div className="ms-2">{placeLikesCount}</div>
@@ -100,7 +103,9 @@ function DetailsPage() {
                     <small>Leave a review</small>
               <textarea className="form-control border-0"
                         onChange={(e) => setReviewContent(e.target.value)}
-                        value={reviewContent} placeholder="Highlight your experience"
+                        value={reviewContent} placeholder="Highlight your experience" style={{
+                  width: "850px", overflow:"visible"
+              }}
               ></textarea>
                     <div className="button1">
                   <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold" onClick={handlePostReviewBtn}>Post Review</button>

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Deca&display=swap');
 
 body {
     background-image: url("../../images/background4.png");
+
 }
 .container1 {
-    display: flex;
+    display: inline;
     justify-content: center;
     align-items: center;
     height: fit-content;
@@ -25,6 +25,7 @@ body {
 
 .text-sec {
     margin-left: 100px;
+    margin-top: 5px;
 }
 .avatar{
     line-height:30px;
@@ -41,13 +42,16 @@ body {
 .heading h3{
     font-family: Georgia;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     color: black;
-    margin-top: 20px;
+    margin-top: 5px;
+    display: inline-block;
+
 
 }
 .likes{
-    margin-left: 10px;
+    float: right;
+
 }
 .sub-heading{
     font-family: "Times New Roman";
@@ -55,6 +59,7 @@ body {
 
 .iconline{
     align-items: center;
+    justify-content: flex-end;
 }
 .contents1{
     font-family: "Times New Roman";
