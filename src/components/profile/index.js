@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserLikesComponent from "./user-likes-component";
+import UserReviewsComponent from "./user-reviews-component";
 
 const ProfilePage = () => {
   const userInfo = useSelector(state => state.userReducer.currentUser);
@@ -71,6 +72,7 @@ const ProfilePage = () => {
                   </div>
                 </div>
                 <UserLikesComponent/>
+                <UserReviewsComponent/>
               </form>
               {/* determinate different user roles */}
               {

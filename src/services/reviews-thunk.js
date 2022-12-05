@@ -8,3 +8,7 @@ export const createReviewThunk = createAsyncThunk(
 export const findReviewsByPlaceThunk = createAsyncThunk(
     'findReviewsByPlaceThunk', async (xid) => await service.findReviewsByPlace(xid)
 );
+
+export const findReviewsByUserThunk = createAsyncThunk(
+    'findReviewsByPlaceThunk', async (uid) => await service.findReviewsByUser(uid)
+);

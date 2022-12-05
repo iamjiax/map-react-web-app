@@ -17,7 +17,7 @@ const UserLikesComponent = () => {
 
   return currentUser && (
       <div>
-        <h3>user favorite places</h3>
+        <h3>Favorite places</h3>
         <ul className="list-group">
           {userLikes.map(like => <PlaceItem key={like.place.xid} place={like.place}/>)}
         </ul>
