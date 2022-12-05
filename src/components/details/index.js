@@ -8,6 +8,9 @@ import LikeIcon from "./like-icon";
 import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 import {createReviewThunk} from "../../services/reviews-thunk";
 import PlaceReviewsList from "./place-reviews-list";
+import './details.css';
+
+
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -35,50 +38,86 @@ function DetailsPage() {
 
   return (
       detailLoaded && (
-          <div className={"container"}>
-            <div className="row mt-2">
-              <div className="col-auto">
-                <h3>{placeDetail.name}</h3>
-              </div>
-              <div className="col-2 d-flex align-items-center">
-                <LikeIcon place={placeDetail}/>
-                <div className="ms-2">{placeLikesCount}</div>
-              </div>
-            </div>
-            <p>{formatKinds(placeDetail.kinds)}</p>
+          <div className={"container1"}>
+              <div className="box1 align-content-center">
+                  <div className="col-9 text-sec ">
+                      <div className="avatar position-relative">
+                        <img className=" rounded-circle"
+                       style={{"height": "100%", "width": "100%", "left": "50%", "bottom": "50%"}}
+                       src={placeDetail.preview.source} alt="..."/>
+                      </div>
+                      <div className="heading col-3 d-flex align-items-center">
+                        <h3>{placeDetail.name}</h3>
+                          <div className="likes col-2 d-flex align-items-center">
+                          <LikeIcon place={placeDetail}/>
+                          <div className="ms-2">{placeLikesCount}</div>
+                      </div>
+                      </div>
 
-            <div className="row">
-              <div className="col">
-                {parse(placeDetail.wikipedia_extracts.html)}
-              </div>
-              <div className="col">
-                <img src={placeDetail.preview.source}
-                     style={{
+                      <div className="sub-heading">
+                      <p>{formatKinds(placeDetail.kinds)}</p>
+                      </div>
+                  </div>
+                  <br/>
+                <div className="row contents1">
+                    <div className="col introduce">
+                    {parse(placeDetail.wikipedia_extracts.html)}
+                    </div>
+                     <div className="col image">
+                        <img src={placeDetail.preview.source}
+                        style={{
                        width: "auto", maxWidth: "100%", height: "auto"
                      }}/>
-              </div>
+                    </div>
+                </div>
+
+            <div className="table">
+                <div className="element">
+                    <div className="stats">
+                        <ul className="wikisite">
+                        <a href={placeDetail.wikipedia}>Wikipedia</a>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="element">
+                    <div className="stats">
+                        <ul className="website">
+                        {placeDetail.url && <a
+                            href={extractUrl(placeDetail.url)}>Website</a>}
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
-
-            <a href={placeDetail.wikipedia}>Wikipedia</a>
-            <div>
-              {placeDetail.url && <a
-                  href={extractUrl(placeDetail.url)}>Website</a>}
-            </div>
-
-            <div>
-              <h5>Place Information from manager</h5>
-            </div>
-
+            {/*<div>*/}
+            {/*  <h5>Place Information from manager</h5>*/}
+            {/*</div>*/}
+          <div className="row2">
             {currentUser &&
-                <div>
-              <textarea className="form-control"
+                <div className="col-10">
+                    <small>Leave a review</small>
+              <textarea className="form-control border-0"
                         onChange={(e) => setReviewContent(e.target.value)}
-                        value={reviewContent}
+                        value={reviewContent} placeholder="Highlight your experience"
               ></textarea>
-                  <button className="btn btn-primary" onClick={handlePostReviewBtn}>Post Review</button>
+                    <div className="button1">
+                  <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold" onClick={handlePostReviewBtn}>Post Review</button>
+                        <div className="text-primary fs-2">
+                            <i className="bi bi-card-image me-3"></i>
+                            <i className="bi bi-filetype-gif me-3"></i>
+                            <i className="bi bi-emoji-smile me-3"></i>
+                            <i className="bi bi-geo-alt"></i>
+                        </div>
+                        </div>
+
                 </div>}
-            <PlaceReviewsList/>
+                  <div className="col-12"><hr/></div>
+
+                  <PlaceReviewsList/>
+          </div>
+              </div>
           </div>
       )
   );
