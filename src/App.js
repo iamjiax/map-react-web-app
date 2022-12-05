@@ -33,8 +33,8 @@ const store = configureStore(
 function App() {
   return (
       <Provider store={store}>
-        <BrowserRouter>
-          <CurrentUser>
+        <CurrentUser>
+          <BrowserRouter>
             <Routes>
               <Route path="/*" element={<MyMap/>}/>
               <Route path="/details/:xid" element={<DetailsPage/>}/>
@@ -51,8 +51,8 @@ function App() {
                 </ProtectedRoute>
               }/>
             </Routes>
-          </CurrentUser>
-        </BrowserRouter>
+          </BrowserRouter>
+        </CurrentUser>
       </Provider>
   );
 }
