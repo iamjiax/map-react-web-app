@@ -5,10 +5,14 @@ export const createReviewThunk = createAsyncThunk(
     'createReview', async (review) => await service.createReview(review)
 );
 
+export const deleteReviewThunk = createAsyncThunk(
+    'deleteReview', async (rid) => await service.deleteReview(rid)
+);
+
 export const findReviewsByPlaceThunk = createAsyncThunk(
     'findReviewsByPlaceThunk', async (xid) => await service.findReviewsByPlace(xid)
 );
 
 export const findReviewsByUserThunk = createAsyncThunk(
-    'findReviewsByPlaceThunk', async (uid) => await service.findReviewsByUser(uid)
+    'findReviewsByUserThunk', async (uid) => await service.findReviewsByUser(uid)
 );

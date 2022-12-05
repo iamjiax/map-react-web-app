@@ -1,6 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {findReviewsByUserThunk} from "../../../services/reviews-thunk";
+import {
+  deleteReviewThunk,
+  findReviewsByUserThunk
+} from "../../../services/reviews-thunk";
 import {Link} from "react-router-dom";
 
 const UserReviewsComponent = () => {
@@ -23,10 +26,14 @@ const UserReviewsComponent = () => {
 }
 
 const ReviewItem = ({review}) => {
+  const dispatch = useDispatch();
   return (
       <li className="list-group-item">
-        <Link to={'/details/${review.place.xid}'}>{review.place.name}</Link>
+        <Link to={`/details/${review.place.xid}`}>{review.place.name}</Link>
         <div>{review.content}</div>
+        <button className="bi-x"
+                onClick={() => dispatch(deleteReviewThunk(review._id))}
+        ></button>
       </li>
   );
 };
