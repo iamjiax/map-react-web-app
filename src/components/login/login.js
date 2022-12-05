@@ -55,19 +55,19 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}/>
 
                     </div>
-                    <div className="roleSection">
-                        <label htmlFor="roleSelectId">Select a role</label>
-                        <select
-                            defaultValue={"Role"}
-                            className="form-select"
-                            type="form-control"
-                            id="roleSelectId"
-                        >
-                            <option>Admin</option>
-                            <option>Visitor</option>
-                            <option>Manager</option>
-                        </select>
-                    </div>
+                    {/*<div className="roleSection">*/}
+                    {/*    <label htmlFor="roleSelectId">Select a role</label>*/}
+                    {/*    <select*/}
+                    {/*        defaultValue={"Role"}*/}
+                    {/*        className="form-select"*/}
+                    {/*        type="form-control"*/}
+                    {/*        id="roleSelectId"*/}
+                    {/*    >*/}
+                    {/*        <option>Admin</option>*/}
+                    {/*        <option>Visitor</option>*/}
+                    {/*        <option>Manager</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
                     <div className="form-check"></div>
                 </form>
                 <center>

@@ -7,12 +7,13 @@ import placesReducer from "./reducers/places-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";
 import likesReducer from "./reducers/likes-reducer";
 import reviewsReducer from "./reducers/reviews-reducer";
+import CurrentUser from "./components/current-user";
 import MyMap from "./components/my-map";
 import LoginPage from "./components/login";
 import ProfilePage from "./components/profile";
 import DetailsPage from "./components/details";
 import EditProfilePage from "./components/profile/edit-profile";
-
+import ProtectedRoute from "./components/protected-route";
 
 const store = configureStore(
     {
@@ -33,14 +34,24 @@ function App() {
   return (
       <Provider store={store}>
         <BrowserRouter>
-          <Routes>
-            <Route path="/*" element={<MyMap/>}/>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/profile" element={<ProfilePage/>}/>
-            <Route path="/profile/edit-profile" element={<EditProfilePage/>}/>
-            <Route path="/details/:xid" element={<DetailsPage/>}/>
-            <Route path="/register" element={<LoginPage/>}/>
-          </Routes>
+          <CurrentUser>
+            <Routes>
+              <Route path="/*" element={<MyMap/>}/>
+              <Route path="/details/:xid" element={<DetailsPage/>}/>
+              <Route path="/login" element={<LoginPage/>}/>
+              <Route path="/register" element={<LoginPage/>}/>
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <ProfilePage/>
+                </ProtectedRoute>
+              }/>
+              <Route path="/profile/edit-profile" element={
+                <ProtectedRoute>
+                  <EditProfilePage/>
+                </ProtectedRoute>
+              }/>
+            </Routes>
+          </CurrentUser>
         </BrowserRouter>
       </Provider>
   );

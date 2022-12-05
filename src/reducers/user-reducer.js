@@ -1,34 +1,21 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {logoutThunk, findUserThunk, loginThunk, registerThunk, updateUserThunk} from "../services/user-thunks";
-import {UserRoles} from "../util/user-roles";
-
+import {logoutThunk, findAllUsersThunk, loginThunk, registerThunk, updateUserThunk, profileThunk, findUserByIdThunk} from "../services/user-thunks";
 
 const userSlice = createSlice({
   name: 'users',
   initialState: {
+    users: [],
+    loading: false,
     currentUser: null,
-
+    publicProfile: null,
     userServiceError: null,
-    /** the following part is placeholder **/
-    loggedIn: true,
-    user: {
-      firstName: "Jia",
-      lastName: "Xu",
-      email:"xu.jia3@northeastern.edu",
-      dateOfBirth: '11/11/1991',
-      location: "Seattle, WA",
-      role: UserRoles.ADMIN
-    }
-    /** ******************************** **/
-
   },
-  reducers: {},
   extraReducers: {
-    [findUserThunk.fulfilled]: (state, action) => {
+    [findAllUsersThunk.fulfilled]: (state, action) => {
       state.users = action.payload
+      state.loading = false
     },
     [loginThunk.fulfilled]: (state, action) => {
-      state.loading = true
       state.currentUser = action.payload
     },
     [loginThunk.rejected]: (state, action) => {
@@ -47,9 +34,13 @@ const userSlice = createSlice({
     },
     [updateUserThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload
-      console.log(action.payload)
-      console.log(state.currentUser)
-    }
+    },
+    [profileThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload
+    },
+    [findUserByIdThunk.fulfilled]: (state, action) => {
+      state.publicProfile = action.payload
+    },
   }
 });
 

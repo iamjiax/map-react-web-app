@@ -43,8 +43,8 @@ const EditProfile = () => {
           <div className="form-control form-group rounded-2">
             <label className="ms-3 text-secondary" htmlFor="edit-profile-firstName">First Name</label>
             <input className="form-control border-0" id="edit-profile-firstName" type="text"
-                   value={curProfile.firstName}
-                   onChange={(event) => setCurProfile({...curProfile, firstName: event.target.value})}
+                   value={curProfile.firstname}
+                   onChange={(event) => setCurProfile({...curProfile, firstname: event.target.value})}
                    placeholder="FirstName"/>
           </div>
         </div>
@@ -53,8 +53,8 @@ const EditProfile = () => {
           <div className="form-control form-group rounded-2">
             <label className="ms-3 text-secondary" htmlFor="edit-profile-lastName">Last Name</label>
             <input className="form-control border-0" id="edit-profile-lastName" type="text"
-                   value={curProfile.lastName}
-                   onChange={(event) => setCurProfile({...curProfile, lastName: event.target.value})}
+                   value={curProfile.lastname}
+                   onChange={(event) => setCurProfile({...curProfile, lastname: event.target.value})}
                    placeholder="LastName"/>
           </div>
         </div>
@@ -100,7 +100,7 @@ const EditProfile = () => {
                    htmlFor="edit-profile-bio">Bio</label>
             <input className="form-control border-0"
                    id="edit-profile-bio" type="text"
-                    value={curProfile.bio}
+                   value={curProfile.bio}
                    onChange={(event)=> setCurProfile({...curProfile, bio: event.target.value})}
                    placeholder="Bio"/>
           </div>

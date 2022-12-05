@@ -46,14 +46,14 @@ const ProfilePage = () => {
                 <div className="form-row">
                   <div className="col-md-4 mb-3">
                     <label htmlFor="userInfo">First Name</label>
-                    <div className="form-control mb-2">{userInfo?.firstName}</div>
+                    <div className="form-control mb-2">{userInfo?.firstname}</div>
                   </div>
                 </div>
 
                 <div className="form-row">
                   <div className="col-md-4 mb-3">
                     <label htmlFor="userInfo">Last Name</label>
-                    <div className="form-control mb-2">{userInfo?.lastName}</div>
+                    <div className="form-control mb-2">{userInfo?.lastname}</div>
                   </div>
                 </div>
 

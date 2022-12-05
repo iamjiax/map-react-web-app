@@ -1,39 +1,43 @@
 import axios from 'axios';
 import {Constants} from "../util/constants";
 
-const BASE_URL = 'http://localhost:4000'
+const api = axios.create({withCredentials: true});
 
-const api = axios.create({withCredentials:true});
-
-export const createUser = async (user) => {
-  const response = await axios.post(Constants.USER_API, user)
-  return response.data;
-}
-
-export const findUser = async () => {
+export const findAllUsers = async () => {
   const response = await axios.get(Constants.USER_API);
   return response.data;
 }
 
 export const register = async (user) => {
-  const response = await axios.post(`http://localhost:4000/api/register`, user)
+  const response = await api.post(`${Constants.BASE_API}/register`, user)
   return response.data
 }
 
 export const login = async (user) => {
-  const response = await axios.post("http://localhost:4000/api/login", user)
+  const response = await api.post(`${Constants.BASE_API}/login`, user)
   return response.data
 }
 
 export const logout = async () => {
-  const response = await axios.post("http://localhost:4000/api/logout")
+  const response = await api.post(`${Constants.BASE_API}/logout`)
   return response.data
 }
 
 export const deleteUser = async (uid) => {}
 
 export const updateUser = async (userUpdates) => {
-  // const response = await axios.put(`${BASE_URL}/${api}/${uid}`, userUpdates)
-  const response = await axios.put("http://localhost:4000/api/users/" + userUpdates._id, userUpdates)
+  await api.put(
+      `${Constants.USER_API}/${userUpdates._id}`, userUpdates)
+  return userUpdates
+}
+
+export const profile = async () => {
+  const response = await api.get(`${Constants.BASE_API}/profile`)
   return response.data
+}
+
+export const findUserById = async (uid) => {
+  const response = await api.get(`${Constants.USER_API}/${uid}`)
+  const user = response.data
+  return user
 }
