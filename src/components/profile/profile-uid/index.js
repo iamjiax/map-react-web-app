@@ -11,7 +11,7 @@ import {findUserByIdThunk} from "../../../services/user-thunks";
 const ProfileWithId = () => {
   // const userInfo = useSelector(state => state.userReducer.currentUser);
   const navigate = useNavigate()
-  const {currentUser} = useSelector((state) => state.userReducer)
+  const {currentUser, publicProfile} = useSelector((state) => state.userReducer)
   const dispatch = useDispatch();
   const {uid} = useParams();
 
@@ -48,24 +48,10 @@ const ProfileWithId = () => {
 
             <div style={{ marginTop: "180px" }}></div>
 
-            <BasicInfoComponent/>
+            <BasicInfoComponent user={publicProfile}/>
             <UserLikesComponent/>
             <UserReviewsComponent/>
             {/* determinate different user roles */}
-            {
-              currentUser.role === UserRoles.MANAGER ? <div></div> : <></>
-              //manage place info  ex: edit time 9:00am - 5:00pm  ex: edit info
-              //able to reply reviews => on details page
-            }
-            {
-              currentUser.role === UserRoles.ADMIN ? <div><UserList/></div> : <></>
-              //list of all users
-              //able to edit and delete
-            }
-            {
-              currentUser.role === UserRoles.VISITOR ? <div></div> : <></>
-              //reviews
-            }
           </div>
         </div>
 

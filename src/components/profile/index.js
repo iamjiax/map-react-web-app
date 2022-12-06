@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
             <div style={{ marginTop: "180px" }}></div>
 
-            <BasicInfoComponent/>
+            <BasicInfoComponent user={currentUser}/>
             <UserLikesComponent/>
             <UserReviewsComponent/>
               {/* determinate different user roles */}
