@@ -1,5 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {logoutThunk, findAllUsersThunk, loginThunk, registerThunk, updateUserThunk, profileThunk, findUserByIdThunk} from "../services/user-thunks";
+import {
+  logoutThunk,
+  findAllUsersThunk,
+  loginThunk,
+  registerThunk,
+  updateUserThunk,
+  profileThunk,
+  findUserByIdThunk,
+  deleteUserThunk
+} from "../services/user-thunks";
 
 const userSlice = createSlice({
   name: 'users',
@@ -40,6 +49,9 @@ const userSlice = createSlice({
     },
     [findUserByIdThunk.fulfilled]: (state, action) => {
       state.publicProfile = action.payload
+    },
+    [deleteUserThunk.fulfilled]: (state, action) => {
+      state.users = state.users.filter(user => user._id !== action.payload)
     },
   }
 });

@@ -17,6 +17,7 @@ import EditProfilePage from "./components/profile/edit-profile";
 import UserLikesComponent from "./components/profile/user-likes-component";
 import UserReviewsComponent from "./components/profile/user-reviews-component";
 import ProtectedRoute from "./components/protected-route";
+import ProfileWithId from "./components/profile/profile-uid";
 
 
 const store = configureStore(
@@ -50,6 +51,8 @@ function App() {
                   <ProfilePage/>
                 </ProtectedRoute>
               }/>
+              <Route path="/profile/:uid" element={<ProfileWithId/>}/>
+
               <Route path="/profile/edit-profile" element={
                 <ProtectedRoute>
                   <EditProfilePage/>

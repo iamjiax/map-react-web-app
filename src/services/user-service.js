@@ -23,7 +23,14 @@ export const logout = async () => {
   return response.data
 }
 
-export const deleteUser = async (uid) => {}
+export const deleteUser = async (uid) => {
+  const response = await api.delete(`${Constants.USER_API}/${uid}`)
+  if (response.data.deletedCount === 1) {
+    return uid
+  } else {
+    return response.data
+  }
+}
 
 export const updateUser = async (userUpdates) => {
   await api.put(
