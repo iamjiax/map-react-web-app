@@ -8,6 +8,7 @@ import LikeIcon from "./like-icon";
 import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 import {createReviewThunk} from "../../services/reviews-thunk";
 import PlaceReviewsList from "./place-reviews-list";
+import './details.css';
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);

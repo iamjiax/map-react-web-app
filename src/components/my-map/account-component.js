@@ -1,8 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useMap} from "react-leaflet";
 import {logoutThunk} from "../../services/user-thunks";
+import EditProfile from "../profile/edit-profile/edit-profile";
+
 
 const AccountComponent = () => {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -47,18 +49,29 @@ const AccountComponent = () => {
                 <div className="card-header">
                   <h6 className="mb-0">{currentUser.username} ({currentUser.email})</h6>
                 </div>
+
                 <div className="card-body">
-                  <h5 className="card-title">Profile Content</h5>
-                  <p className="card-text">With supporting text below as a
-                    natural lead-in to additional content.</p>
+                  <h5 className="card-title"></h5>
+                    <font className="card-text" face="Georgia"size = "4" color="#1e90ff">{currentUser.firstname}</font>
+                    <p className="card-text">{currentUser.location}</p>
+                    <small className="card-text">{currentUser.bio}</small>
+
                 </div>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Cras justo odio</li>
-                  <li className="list-group-item">Dapibus ac facilisis in</li>
-                  <li className="list-group-item">Vestibulum at eros</li>
+                    <Link to="/profile" className={`list-group-item d-flex`}>
+                        <i className="bi bi-person pe-2"></i><span className="d-none d-xl-block">Profile</span>
+                    </Link>
+                    <Link to="/profile/likes" className={`list-group-item d-flex
+                            `}>
+                        <i className="bi bi-heart-fill pe-2"></i><span className="d-none d-xl-block">Likes</span>
+                    </Link>
+                    <Link to="/profile/reviews" className={`list-group-item d-flex
+                            `}>
+                        <i className="bi bi-chat-square-text pe-2"></i><span className="d-none d-xl-block">Reviews</span>
+                    </Link>
                 </ul>
                 <div className="card-body">
-                  <Link to="profile" className="btn btn-primary text-white">
+                  <Link to="/profile/edit-profile" className="btn btn-primary text-white">
                     Manage your Account
                   </Link>
                   <button
