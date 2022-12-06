@@ -100,7 +100,7 @@ const EditProfile = () => {
                    htmlFor="edit-profile-bio">Bio</label>
             <input className="form-control border-0"
                    id="edit-profile-bio" type="text"
-                   value={curProfile.bio}
+                   value={curProfile.bio ? curProfile.bio : ""}
                    onChange={(event)=> setCurProfile({...curProfile, bio: event.target.value})}
                    placeholder="Bio"/>
           </div>
