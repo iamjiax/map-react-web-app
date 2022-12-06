@@ -15,7 +15,7 @@ export const updatePlaceinfo = async (placeinfo) => {
   if (response.data.modifiedCount === 1) {
     return placeinfo
   }
-  return response.data;
+  return null;
 }
 
 export const deletePlaceinfo = async (piid) => {

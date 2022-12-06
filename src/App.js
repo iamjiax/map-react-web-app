@@ -7,6 +7,7 @@ import placesReducer from "./reducers/places-reducer";
 import placeDetailReducer from "./reducers/place-detail-reducer";
 import likesReducer from "./reducers/likes-reducer";
 import reviewsReducer from "./reducers/reviews-reducer";
+import placeinfoReducer from "./reducers/placeinfo-reducer";
 import CurrentUser from "./components/current-user";
 import MyMap from "./components/my-map";
 import LoginPage from "./components/login";
@@ -17,12 +18,14 @@ import UserLikesComponent from "./components/profile/user-likes-component";
 import UserReviewsComponent from "./components/profile/user-reviews-component";
 import ProtectedRoute from "./components/protected-route";
 
+
 const store = configureStore(
     {
       reducer: {
         userReducer: userReducer,
         placesReducer: placesReducer,
         placeDetailReducer: placeDetailReducer,
+        placeinfoReducer: placeinfoReducer,
         likesReducer: likesReducer,
         reviewsReducer: reviewsReducer
       },
