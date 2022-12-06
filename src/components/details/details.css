@@ -1,5 +1,6 @@
 
 body {
+
     background-image: url("../../images/background4.png");
 
 }
@@ -47,7 +48,6 @@ body {
     margin-top: 5px;
     display: inline-block;
 
-
 }
 .likes{
     float: right;
@@ -83,11 +83,4 @@ body {
 .row2{
     justify-content: center;
     margin-left: 100px;
-}
-.button1{
-
-
-}
-.website{
-
 }

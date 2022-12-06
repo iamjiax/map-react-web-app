@@ -13,6 +13,8 @@ import LoginPage from "./components/login";
 import ProfilePage from "./components/profile";
 import DetailsPage from "./components/details";
 import EditProfilePage from "./components/profile/edit-profile";
+import UserLikesComponent from "./components/profile/user-likes-component";
+import UserReviewsComponent from "./components/profile/user-reviews-component";
 import ProtectedRoute from "./components/protected-route";
 
 const store = configureStore(
@@ -50,6 +52,16 @@ function App() {
                   <EditProfilePage/>
                 </ProtectedRoute>
               }/>
+                <Route path="/profile/reviews" element={
+                    <ProtectedRoute>
+                        <UserReviewsComponent/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/profile/likes" element={
+                    <ProtectedRoute>
+                        <UserLikesComponent/>
+                    </ProtectedRoute>
+                }/>
             </Routes>
           </BrowserRouter>
         </CurrentUser>

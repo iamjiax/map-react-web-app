@@ -32,4 +32,5 @@ const PlaceItem = ({place}) => {
       </li>
   );
 };
+
 export default UserLikesComponent;

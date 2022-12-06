@@ -11,7 +11,6 @@ import PlaceReviewsList from "./place-reviews-list";
 import './details.css';
 
 
-
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
   const {placeLikesCount} = useSelector(state => state.likesReducer);
