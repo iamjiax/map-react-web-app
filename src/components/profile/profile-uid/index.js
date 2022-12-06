@@ -1,12 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
-import BasicInfoComponent from "../basic-info-component";
 import UserLikesComponent from "../user-likes-component";
 import UserReviewsComponent from "../user-reviews-component";
-import {UserRoles} from "../../../util/user-roles";
-import UserList from "../all-user-component";
 import {useEffect} from "react";
 import {findUserByIdThunk} from "../../../services/user-thunks";
+import PublicProfileComponent from "../public-profile-component";
 
 const ProfileWithId = () => {
   // const userInfo = useSelector(state => state.userReducer.currentUser);
@@ -38,7 +36,7 @@ const ProfileWithId = () => {
             </div>
 
             <div className="row position-relative mt-2">
-              <img className="img-fluid" style={{"width":"1000px", "height":"200px"}} src={require(`../image/mapBannerWithoutLogin.png`)} alt="banner"/>
+              <img className="img-fluid w-100" style={{"width":"800px", "height":"200px"}} src={require(`../image/mapBannerWithoutLogin.png`)} alt="banner"/>
               {/*<img style={{"width":"800px", "height":"200px"}} src={require(`src/components/profile/image/mapBanner.jpeg`)} alt="banner"/>*/}
 
               <div className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4" >
@@ -48,7 +46,7 @@ const ProfileWithId = () => {
 
             <div style={{ marginTop: "180px" }}></div>
 
-            <BasicInfoComponent user={publicProfile}/>
+            <PublicProfileComponent user={publicProfile}/>
             <UserLikesComponent/>
             <UserReviewsComponent/>
             {/* determinate different user roles */}

@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import UserLikesComponent from "./user-likes-component";
 import {UserRoles} from "../../util/user-roles";
 import UserReviewsComponent from "./user-reviews-component";
-import BasicInfoComponent from "./basic-info-component";
 import UserList from "./all-user-component";
 import {Link, useNavigate} from "react-router-dom";
+import PrivateProfileComponent from "./private-profile-component";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="row position-relative mt-2">
-              <img className="img-fluid" style={{"width":"1000px", "height":"200px"}} src={require(`./image/mapBanner.jpeg`)} alt="banner"/>
+              <img className="img-fluid w-100" style={{"width":"800px", "height":"200px"}} src={require(`./image/mapBanner.jpeg`)} alt="banner"/>
               {/*<img style={{"width":"800px", "height":"200px"}} src={require(`src/components/profile/image/mapBanner.jpeg`)} alt="banner"/>*/}
 
               <div className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4" >
@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
             <div style={{ marginTop: "180px" }}></div>
 
-            <BasicInfoComponent user={currentUser}/>
+            <PrivateProfileComponent user={currentUser}/>
             <UserLikesComponent/>
             <UserReviewsComponent/>
               {/* determinate different user roles */}
