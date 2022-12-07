@@ -59,15 +59,15 @@ const AccountComponent = () => {
                 </div>
                 <ul className="list-group list-group-flush">
                     <Link to="/profile" className={`list-group-item d-flex`}>
-                        <i className="bi bi-person pe-2"></i><span className="d-none d-xl-block">Profile</span>
+                        <i className="bi bi-person pe-2"></i><span>Profile</span>
                     </Link>
                     <Link to="/profile/likes" className={`list-group-item d-flex
                             `}>
-                        <i className="bi bi-heart-fill pe-2"></i><span className="d-none d-xl-block">Likes</span>
+                        <i className="bi bi-heart-fill pe-2"></i><span>Likes</span>
                     </Link>
                     <Link to="/profile/reviews" className={`list-group-item d-flex
                             `}>
-                        <i className="bi bi-chat-square-text pe-2"></i><span className="d-none d-xl-block">Reviews</span>
+                        <i className="bi bi-chat-square-text pe-2"></i><span>Reviews</span>
                     </Link>
                 </ul>
                 <div className="card-body">

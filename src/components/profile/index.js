@@ -5,6 +5,7 @@ import UserReviewsComponent from "./user-reviews-component";
 import UserList from "./all-user-component";
 import {Link, useNavigate} from "react-router-dom";
 import PrivateProfileComponent from "./private-profile-component";
+import ManagerPlaceinfoComponent from "./manager-placeinfo-component";
 
 const ProfilePage = () => {
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ const ProfilePage = () => {
             <UserReviewsComponent user={currentUser}/>
               {/* determinate different user roles */}
               {
-                currentUser.role === UserRoles.MANAGER ? <div>display manage place</div> : <></>
+                currentUser.role === UserRoles.MANAGER ? <div><ManagerPlaceinfoComponent user={currentUser}/></div> : <></>
                 //manage place info  ex: edit time 9:00am - 5:00pm  ex: edit info
                 //able to reply reviews => on details page
               }

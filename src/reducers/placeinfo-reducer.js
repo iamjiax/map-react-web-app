@@ -10,7 +10,8 @@ import {
 const placeinfoReducer = createSlice({
   name: 'placeinfo',
   initialState: {
-    placeinfo: null
+    placeinfo: null,
+    placeinfoByManager: []
   },
   extraReducers: {
     [createPlaceinfoThunk.fulfilled]: (state, {payload}) => {
@@ -26,7 +27,7 @@ const placeinfoReducer = createSlice({
       state.placeinfo= payload
     },
     [findPlaceinfoByManagerThunk.fulfilled]: (state, {payload}) => {
-      state.placeinfo= payload
+      state.placeinfoByManager = payload
     }
   }
 })

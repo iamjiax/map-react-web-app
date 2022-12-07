@@ -1,7 +1,10 @@
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {findReviewsByPlaceThunk, deleteReviewThunk} from "../../services/reviews-thunk";
+import {
+  deleteReviewThunk,
+  findReviewsByPlaceThunk
+} from "../../services/reviews-thunk";
 
 const PlaceReviewsList = () => {
   const {reviews} = useSelector(state => state.reviewsReducer);
@@ -9,11 +12,12 @@ const PlaceReviewsList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(findReviewsByPlaceThunk(xid))
-      }, [xid]);
+  }, [xid]);
   return (
       <ul className="list-group">
         {
-          reviews.map(review => <PlaceReviewItem key={review._id} review={review}/>)
+          reviews.map(
+              review => <PlaceReviewItem key={review._id} review={review}/>)
         }
       </ul>
   );
@@ -22,16 +26,29 @@ const PlaceReviewsList = () => {
 const PlaceReviewItem = ({review}) => {
   const dispatch = useDispatch();
   const {currentUser} = useSelector(state => state.userReducer);
-  const profileUrl = currentUser?._id === review.user._id ? "/profile" : `/profile/${review.user._id}`;
+  const {placeinfo} = useSelector(state => state.placeinfoReducer);
+  const profileUrl = currentUser?._id === review.user._id ? "/profile"
+      : `/profile/${review.user._id}`;
+  const handleReplyReviewBtn = () => {
+    console.log("manager reply")
+  }
   return (
       <li className="list-group-item">
         <Link to={profileUrl}>{review.user.username}</Link>
-        <div>{review.content}</div>
-        {(currentUser?._id === review.user._id) &&
-            <button className="bi-x"
-                    onClick={() => dispatch(deleteReviewThunk(review._id))}
-            ></button>
-        }
+        <div>
+          {review.content}
+          {(currentUser?._id === review.user._id) &&
+              <i className="bi bi-x-lg float-end"
+                 onClick={() => dispatch(deleteReviewThunk(review._id))}
+              ></i>
+          }
+          {(currentUser?._id === placeinfo?.manager._id) &&
+              <button className="btn btn-primary float-end"
+                      onClick={handleReplyReviewBtn}>
+                reply
+              </button>
+          }
+        </div>
       </li>
   );
 

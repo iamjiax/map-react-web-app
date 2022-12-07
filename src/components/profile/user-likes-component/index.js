@@ -31,6 +31,6 @@ const PlaceItem = ({place}) => {
         <Link to={`/details/${place.xid}`}>{place.name}</Link>
       </li>
   );
-};
+}
 
 export default UserLikesComponent;
