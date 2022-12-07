@@ -18,6 +18,7 @@ import UserLikesComponent from "./components/profile/user-likes-component";
 import UserReviewsComponent from "./components/profile/user-reviews-component";
 import ProtectedRoute from "./components/protected-route";
 import ProfileWithId from "./components/profile/profile-uid";
+import Navigation from "./components/navigation";
 
 
 const store = configureStore(
@@ -41,6 +42,7 @@ function App() {
       <Provider store={store}>
         <CurrentUser>
           <BrowserRouter>
+            <Navigation/>
             <Routes>
               <Route path="/*" element={<MyMap/>}/>
               <Route path="/details/:xid" element={<DetailsPage/>}/>

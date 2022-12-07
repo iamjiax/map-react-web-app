@@ -14,6 +14,7 @@ import {
 import PlaceReviewsList from "./place-reviews-list";
 import './details.css';
 import {UserRoles} from "../../util/user-roles";
+import Navigation from "../navigation";
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
