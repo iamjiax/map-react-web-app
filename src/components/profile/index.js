@@ -43,8 +43,8 @@ const ProfilePage = () => {
             <div style={{ marginTop: "180px" }}></div>
 
             <PrivateProfileComponent user={currentUser}/>
-            <UserLikesComponent/>
-            <UserReviewsComponent/>
+            <UserLikesComponent user={currentUser}/>
+            <UserReviewsComponent user={currentUser}/>
               {/* determinate different user roles */}
               {
                 currentUser.role === UserRoles.MANAGER ? <div>display manage place</div> : <></>

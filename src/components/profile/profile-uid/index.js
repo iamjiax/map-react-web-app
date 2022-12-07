@@ -47,8 +47,8 @@ const ProfileWithId = () => {
             <div style={{ marginTop: "180px" }}></div>
 
             <PublicProfileComponent user={publicProfile}/>
-            <UserLikesComponent/>
-            <UserReviewsComponent/>
+            <UserLikesComponent user={publicProfile}/>
+            <UserReviewsComponent user={publicProfile}/>
             {/* determinate different user roles */}
           </div>
         </div>

@@ -5,17 +5,17 @@ import {
 } from "../../../services/likes-thunk";
 import {Link} from "react-router-dom";
 
-const UserLikesComponent = () => {
-  const {currentUser} = useSelector(state => state.userReducer);
+const UserLikesComponent = ({user}) => {
+  // const {currentUser} = useSelector(state => state.userReducer);
   const {userLikes} = useSelector(state => state.likesReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (currentUser) {
-      dispatch(findLikesByUserThunk(currentUser._id))
+    if (user) {
+      dispatch(findLikesByUserThunk(user._id))
     }
-  }, [currentUser]);
+  }, [user]);
 
-  return currentUser && (
+  return user && (
       <div>
         <h3>Favorite places</h3>
         <ul className="list-group">
