@@ -6,6 +6,7 @@ import {
   findReviewsByPlaceThunk,
   updateReviewThunk
 } from "../../services/reviews-thunk";
+import {UserRoles} from "../../util/user-roles";
 
 const PlaceReviewsList = () => {
   const {reviews} = useSelector(state => state.reviewsReducer);
@@ -77,7 +78,7 @@ const PlaceReviewItem = ({review}) => {
 
             {/******* review edit btn here *********/}
 
-            {(currentUser?._id === placeinfo?.manager._id)
+            {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id === placeinfo?.manager._id)
                 && !review.reply
                 && !isReply &&
                 <button className="btn btn-primary float-end"
