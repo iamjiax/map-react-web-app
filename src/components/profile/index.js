@@ -21,10 +21,10 @@ const ProfilePage = () => {
         <div className="col-sm-10 col-md-10 col-lg-7 col-xl-6">
           <div className="border border-1">
             <div className="row mt-2">
-              <div className="col-2 d-flex align-items-center justify-content-center ms-2">
-                {/*<div className="text-black"><i className="bi bi-arrow-left"></i></div>*/}
-                <button className="btn fw-bolder" onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i> go back</button>
-              </div>
+              {/*<div className="col-2 d-flex align-items-center justify-content-center ms-2">*/}
+              {/*  /!*<div className="text-black"><i className="bi bi-arrow-left"></i></div>*!/*/}
+              {/*  <button className="btn fw-bolder" onClick={() => navigate(-1)}><i className="bi bi-arrow-left"></i> go back</button>*/}
+              {/*</div>*/}
               {/*<div className="col-10">*/}
               {/*  /!*<div className="row text-black fs5">go back</div>*!/*/}
               {/*</div>*/}

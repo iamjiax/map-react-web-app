@@ -136,7 +136,7 @@ function DetailsPage() {
                     <h3>Information from manager</h3>
                     {placeinfo?.notification}
                     <div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">
-                      <input className="form-control border-0" id="edit-profile-lastName" type="text"
+                      <input className="form-control border-0" id="edit-notification" type="text"
                              value={notification}
                              onChange={(event) => {
                                setNotification(event.target.value)
