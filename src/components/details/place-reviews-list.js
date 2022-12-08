@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {
   deleteReviewThunk,
   findReviewsByPlaceThunk
@@ -29,9 +29,12 @@ const PlaceReviewItem = ({review}) => {
   const {placeinfo} = useSelector(state => state.placeinfoReducer);
   const profileUrl = currentUser?._id === review.user._id ? "/profile"
       : `/profile/${review.user._id}`;
-  const handleReplyReviewBtn = () => {
-    console.log("manager reply")
-  }
+  const [isReply, setIsReply] = useState(false);
+  const cancelClickBtn = () => setIsReply(false);
+  const [replyContent, setReplyContent] = useState("");
+  const handleReplyReviewBtn = () => setIsReply(true);
+  const saveReplyBtn = () => {}
+
   return (
       <li className="list-group-item">
         <Link to={profileUrl}>{review.user.username}</Link>
@@ -46,8 +49,21 @@ const PlaceReviewItem = ({review}) => {
               <button className="btn btn-primary float-end"
                       onClick={handleReplyReviewBtn}>
                 reply
-              </button>
-          }
+              </button>}
+
+          {(isReply === true) && <div className="mt-3">
+            <textarea className="form-control"
+                      placeholder="Reply to the review..."
+                      style={{overFlow: "hidden"}}
+                      value={replyContent}
+                      onChange={(event) => setReplyContent(event.target.value)}/>
+            <div className="mt-3">
+              <button onClick={cancelClickBtn} type="button" className="btn btn-secondary float-end">Cancel</button>
+              <button onClick={saveReplyBtn} type="button" className="btn btn-primary float-end me-3">Save</button>
+            </div>
+          </div>}
+
+
         </div>
       </li>
   );

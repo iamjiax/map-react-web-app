@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {findPlaceByXidThunk} from "../../services/places-thunks";
 import parse from 'html-react-parser';
 import {extractUrl, formatKinds} from "../../util/format";
@@ -9,12 +9,17 @@ import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 import {createReviewThunk} from "../../services/reviews-thunk";
 import {
   createPlaceinfoThunk,
-  findPlaceinfoByPlaceThunk
+  findPlaceinfoByPlaceThunk, updatePlaceinfoThunk
 } from "../../services/placeinfo-thunk";
 import PlaceReviewsList from "./place-reviews-list";
 import './details.css';
 import {UserRoles} from "../../util/user-roles";
 import Navigation from "../navigation";
+import {
+  createNotification,
+  updatePlaceinfo
+} from "../../services/placeinfo-service";
+import {updateUserThunk} from "../../services/user-thunks";
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -36,6 +41,7 @@ function DetailsPage() {
   };
 
   const {placeinfo} = useSelector(state => state.placeinfoReducer);
+  const [notification, setNotification] = useState("")
   const handleManagePlaceBtn = () => {
     const newPlaceinfo = {
       manager: {_id: currentUser._id, username: currentUser.username},
@@ -46,9 +52,14 @@ function DetailsPage() {
 
   useEffect(() => {
     dispatch(findPlaceByXidThunk(xid));
-    dispatch(findPlaceLikesCountThunk(xid))
+    dispatch(findPlaceLikesCountThunk(xid));
     dispatch(findPlaceinfoByPlaceThunk(xid));
   }, [xid]);
+
+  const updatePlaceInfoHandler = () => {
+    dispatch(updatePlaceinfoThunk({...placeinfo, notification: notification}));
+    setNotification("");
+  }
 
   return (
       detailLoaded && (
@@ -120,12 +131,24 @@ function DetailsPage() {
 
               </div>
 
-              {placeinfo &&
-                  <div>
+              {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id === placeinfo?.manager._id) &&
+                  <div className="row">
                     <h3>Information from manager</h3>
-                    {placeinfo.notification}
-                  </div>
-              }
+                    {placeinfo?.notification}
+                    <div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">
+                      <input className="form-control border-0" id="edit-profile-lastName" type="text"
+                             value={notification}
+                             onChange={(event) => {
+                               setNotification(event.target.value)
+                             }}
+                             placeholder="Notification"/>
+
+                      <button
+                          className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
+                          onClick={updatePlaceInfoHandler}>Notification
+                      </button>
+                    </div>
+                  </div>}
 
               <div className="row2">
                 {(currentUser?.role === UserRoles.VISITOR) &&
