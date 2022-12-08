@@ -5,6 +5,10 @@ export const createReviewThunk = createAsyncThunk(
     'createReview', async (review) => await service.createReview(review)
 );
 
+export const updateReviewThunk = createAsyncThunk(
+    'updateReview', async (reviewUpdates) => await service.updateReview(reviewUpdates)
+);
+
 export const deleteReviewThunk = createAsyncThunk(
     'deleteReview', async (rid) => await service.deleteReview(rid)
 );

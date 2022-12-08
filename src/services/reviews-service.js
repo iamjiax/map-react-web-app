@@ -9,6 +9,15 @@ export const createReview = async (review) => {
   return response.data;
 }
 
+export const updateReview = async (reviewUpdates) => {
+  const url = `${Constants.REVIEWS_API}/${reviewUpdates._id}`;
+  const response = await api.put(url, reviewUpdates);
+  if (response.data.modifiedCount === 1) {
+    return reviewUpdates
+  }
+  return response.data;
+}
+
 export const deleteReview = async (rid) => {
   const url = `${Constants.REVIEWS_API}/${rid}`;
   const response = await api.delete(url);
