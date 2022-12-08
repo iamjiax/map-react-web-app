@@ -1,18 +1,13 @@
 import React from "react";
 import EditProfile from "./edit-profile.js";
 
-
 const EditProfileComponent = () => {
   return (
-      <div className="row mt-3 mb-3">
-        <div className="col-2 col-md-2 col-lg-1 col-xl-2">
-          <h5></h5>
-        </div>
-        <div className="col-sm-10 col-md-10 col-lg-7 col-xl-6">
-          <EditProfile/>
-        </div>
-        <div className="d-sm-none d-md-none d-lg-block col-lg-4 col-xl-4">
-          <h4></h4>
+      <div className="container" style={{paddingTop: "50px"}}>
+        <div className="row justify-content-center">
+          <div className="col-sm-12 col-md-11 col-lg-9 col-xl-8">
+            <EditProfile/>
+          </div>
         </div>
       </div>
   )

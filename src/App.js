@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import {configureStore,} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import userReducer from './reducers/user-reducer';
@@ -14,12 +14,9 @@ import LoginPage from "./components/login";
 import ProfilePage from "./components/profile";
 import DetailsPage from "./components/details";
 import EditProfilePage from "./components/profile/edit-profile";
-import UserLikesComponent from "./components/profile/user-likes-component";
-import UserReviewsComponent from "./components/profile/user-reviews-component";
 import ProtectedRoute from "./components/protected-route";
 import ProfileWithId from "./components/profile/profile-uid";
 import Navigation from "./components/navigation";
-
 
 const store = configureStore(
     {
@@ -43,34 +40,34 @@ function App() {
         <CurrentUser>
           <BrowserRouter>
             <Navigation/>
-            <Routes>
-              <Route path="/*" element={<MyMap/>}/>
-              <Route path="/details/:xid" element={<DetailsPage/>}/>
-              <Route path="/login" element={<LoginPage/>}/>
-              <Route path="/register" element={<LoginPage/>}/>
-              <Route path="/profile" element={
-                <ProtectedRoute>
-                  <ProfilePage/>
-                </ProtectedRoute>
-              }/>
-              <Route path="/profile/:uid" element={<ProfileWithId/>}/>
+              <Routes>
+                <Route path="/*" element={<MyMap/>}/>
+                <Route path="/details/:xid" element={<DetailsPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/register" element={<LoginPage/>}/>
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <ProfilePage/>
+                  </ProtectedRoute>
+                }/>
+                <Route path="/profile/:uid" element={<ProfileWithId/>}/>
 
-              <Route path="/profile/edit-profile" element={
-                <ProtectedRoute>
-                  <EditProfilePage/>
-                </ProtectedRoute>
-              }/>
-                <Route path="/profile/reviews" element={
-                    <ProtectedRoute>
-                        <UserReviewsComponent/>
-                    </ProtectedRoute>
+                <Route path="/profile/edit-profile" element={
+                  <ProtectedRoute>
+                    <EditProfilePage/>
+                  </ProtectedRoute>
                 }/>
-                <Route path="/profile/likes" element={
-                    <ProtectedRoute>
-                        <UserLikesComponent/>
-                    </ProtectedRoute>
-                }/>
-            </Routes>
+                {/*<Route path="/profile/reviews" element={*/}
+                {/*    <ProtectedRoute>*/}
+                {/*        <UserReviewsComponent/>*/}
+                {/*    </ProtectedRoute>*/}
+                {/*}/>*/}
+                {/*<Route path="/profile/likes" element={*/}
+                {/*    <ProtectedRoute>*/}
+                {/*        <UserLikesComponent/>*/}
+                {/*    </ProtectedRoute>*/}
+                {/*}/>*/}
+              </Routes>
           </BrowserRouter>
         </CurrentUser>
       </Provider>

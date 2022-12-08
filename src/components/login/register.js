@@ -37,8 +37,8 @@ const Register = () => {
     //return (<Navigate to = {'/profile'}/>)}
   }
   return (
-      <>
-        <div className="card col-12 col-lg-4 login-card mt-5  mx-auto">
+      <div className="container" style={{paddingTop: "50px"}}>
+        <div className="card col-10 col-md-9 col-lg-8 col-xl-6 login-card mt-5  mx-auto">
 
           <div className="card-header"><h2>Register a Map Account</h2></div>
 
@@ -170,7 +170,7 @@ const Register = () => {
             Copyright ⓒ 2022 Designed by @Map, Inc.
           </div>
         </div>
-      </>
+      </div>
   )
 }
 
