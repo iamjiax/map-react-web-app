@@ -5,7 +5,6 @@ const Navigation = () => {
   const {currentUser} = useSelector((state) => state.userReducer);
   const {pathname} = useLocation()
   const parts = pathname.split('/')
-  console.log(parts)
   const navPages = ["details", "login", "register", "profile"];
   const displayNav = navPages.includes(parts[1])
   return displayNav && (

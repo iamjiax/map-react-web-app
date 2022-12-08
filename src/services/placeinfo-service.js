@@ -38,9 +38,3 @@ export const findPlaceinfoByManager = async (uid) => {
   const response = await axios.get(url);
   return response.data;
 }
-
-// export const createNotification = async (notification) => {
-//   const url = `${Constants.PLACEINFO_API}`;
-//   const response = await api.post(url, notification);
-//   return response.data;
-// }
