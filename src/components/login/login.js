@@ -20,6 +20,7 @@ const Login = () => {
     return(
         <>
             <div className="login-card card col-12 col-lg-4 mt-5  mx-auto ">
+                <div style={{ marginTop: "8px" }}></div>
                 <div className="card-header"> <h3>Welcome to Map</h3></div>
                 <div className="form-check"></div>
                     {

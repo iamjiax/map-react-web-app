@@ -6,16 +6,16 @@ import {
 } from "../../../services/reviews-thunk";
 import {Link} from "react-router-dom";
 
-const UserReviewsComponent = ({user}) => {
-  // const {currentUser} = useSelector(state => state.userReducer);
+const UserReviewsComponent = () => {
+    const {currentUser} = useSelector(state => state.userReducer);
   const {reviews} = useSelector(state => state.reviewsReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (user) {
-      dispatch(findReviewsByUserThunk(user._id))
+    if (currentUser) {
+      dispatch(findReviewsByUserThunk())
     }
-  }, [user]);
-  return user && (
+  }, [currentUser]);
+  return currentUser && (
       <div>
         <h3>Reviews</h3>
         <ul className="list-group">
@@ -30,13 +30,13 @@ const ReviewItem = ({review}) => {
   const dispatch = useDispatch();
   return (
       <li className="list-group-item">
-        <Link to={`/details/${review.place.xid}`}>{review.place.name}</Link>
-        <div>{review.content}</div>
-        {(currentUser?._id === review.user._id) &&
-          <button className="bi-x"
-                  onClick={() => dispatch(deleteReviewThunk(review._id))}
-          ></button>
-        }
+          <Link to={`/details/${review.place.xid}`}>{review.place.name}</Link>
+          <div>{review.content}</div>
+          {(currentUser?._id === review.user._id) &&
+              <button className="bi-x"
+                      onClick={() => dispatch(deleteReviewThunk(review._id))}
+              ></button>
+          }
       </li>
   );
 };

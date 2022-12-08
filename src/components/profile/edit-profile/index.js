@@ -4,7 +4,9 @@ import EditProfile from "./edit-profile.js";
 
 const EditProfileComponent = () => {
   return (
+
       <div className="row mt-3 mb-3">
+          <div style={{ marginTop: "60px" }}></div>
         <div className="col-2 col-md-2 col-lg-1 col-xl-2">
           <h5></h5>
         </div>

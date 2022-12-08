@@ -39,6 +39,7 @@ const Register = () => {
   return (
       <>
         <div className="card col-12 col-lg-4 login-card mt-5  mx-auto">
+          <div style={{ marginTop: "8px" }}></div>
 
           <div className="card-header"><h2>Register a Map Account</h2></div>
 

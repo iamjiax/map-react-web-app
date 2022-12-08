@@ -33,23 +33,29 @@ const PlaceReviewItem = ({review}) => {
     console.log("manager reply")
   }
   return (
-      <li className="list-group-item">
-        <Link to={profileUrl}>{review.user.username}</Link>
-        <div>
-          {review.content}
-          {(currentUser?._id === review.user._id) &&
-              <i className="bi bi-x-lg float-end"
-                 onClick={() => dispatch(deleteReviewThunk(review._id))}
-              ></i>
-          }
-          {(currentUser?._id === placeinfo?.manager._id) &&
-              <button className="btn btn-primary float-end"
-                      onClick={handleReplyReviewBtn}>
-                reply
-              </button>
-          }
-        </div>
-      </li>
+      <div className="container">
+          <div className="row">
+              <li className="row list-group-item align-items-center">
+                  <Link to={profileUrl}>{review.user.username}</Link>
+                  <div>
+                      {review.content}
+                      {(currentUser?._id === review.user._id) &&
+                          <i className="bi bi-x-lg float-end"
+                             onClick={() => dispatch(deleteReviewThunk(review._id))}
+                          ></i>
+                      }
+                      {(currentUser?._id === placeinfo?.manager._id) &&
+                          <button className="btn btn-primary float-end"
+                                  onClick={handleReplyReviewBtn}>
+                              reply
+                          </button>
+                      }
+                  </div>
+              </li>
+
+         </div>
+      </div>
+
   );
 
 }
