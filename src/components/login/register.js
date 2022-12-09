@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../../services/user-thunks";
 import {Link, useNavigate} from "react-router-dom";
 import './register.css';
@@ -17,6 +17,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const {userServiceError} = useSelector(state => state.userReducer);
   const handleRegisterBtn = () => {
     if (password !== validatePassword) {
       setError('Passwords must match')
@@ -32,16 +33,24 @@ const Register = () => {
       role: role
     }
     dispatch(registerThunk(newUser))
-    navigate(-2)
-    //if (currentUser){
-    //return (<Navigate to = {'/profile'}/>)}
+    if(!userServiceError) {
+      navigate(-2)
+    }
+    // if (currentUser){
+    // return (<Navigate to = {'/profile'}/>)}
   }
   return (
+
       <div className="container" style={{paddingTop: "50px"}}>
         <div className="card col-10 col-md-9 col-lg-8 col-xl-6 login-card mt-5  mx-auto">
 
           <div className="card-header"><h2>Register a Map Account</h2></div>
-
+          {
+              userServiceError &&
+              <div className="alert alert-danger">
+                {userServiceError}
+              </div>
+          }
           {
               error &&
               <div className="alert alert-danger">
