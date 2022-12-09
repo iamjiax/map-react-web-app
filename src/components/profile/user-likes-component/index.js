@@ -17,7 +17,6 @@ const UserLikesComponent = ({user}) => {
 
   return user && (
       <div>
-        {/*<h3>Favorite places</h3>*/}
         <div className="row mt-5 mb-3">
           <div className="col">
             <hr className="border border-2 opacity-50"/>

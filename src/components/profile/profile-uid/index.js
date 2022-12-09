@@ -35,7 +35,6 @@ const ProfileWithId = () => {
                      style={{"width": "800px", "height": "200px"}}
                      src={require(`../image/mapBannerWithoutLogin.png`)}
                      alt="banner"/>
-                {/*<img style={{"width":"800px", "height":"200px"}} src={require(`src/components/profile/image/mapBanner.jpeg`)} alt="banner"/>*/}
 
                 <div
                     className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4">
@@ -54,7 +53,6 @@ const ProfileWithId = () => {
               <PublicProfileComponent user={publicProfile}/>
               <UserLikesComponent user={publicProfile}/>
               <UserReviewsComponent user={publicProfile}/>
-              {/* determinate different user roles */}
             </div>
           </div>
         </div>

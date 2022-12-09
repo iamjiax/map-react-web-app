@@ -16,7 +16,6 @@ const ManagerPlaceinfoComponent = ({user}) => {
 
   return user && (
       <div>
-        {/*<h3>Managed Places</h3>*/}
         <div className="row mt-5 mb-3">
           <div className="col">
             <hr className="border border-2 opacity-50"/>
@@ -44,7 +43,6 @@ const PlaceinfoItem = ({placeinfo}) => {
           Notification:
           <div>{placeinfo.notification}</div>
         </div>
-        {/*Edit btn*/}
       </li>
   );
 }

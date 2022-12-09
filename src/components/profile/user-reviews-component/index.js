@@ -17,7 +17,6 @@ const UserReviewsComponent = ({user}) => {
   }, [user]);
   return user && (
       <div>
-        {/*<h3>Reviews</h3>*/}
         <div className="row mt-5 mb-3">
           <div className="col">
             <hr className="border border-2 opacity-50"/>
@@ -40,12 +39,12 @@ const ReviewItem = ({review}) => {
   return (
       <li className="list-group-item">
         <Link to={`/details/${review.place.xid}`}>{review.place.name}</Link>
-        <div>{review.content}</div>
+        <div>{review.content}
         {(currentUser?._id === review.user._id) &&
-          <button className="bi-x"
+          <button className="btn bi bi-x-lg float-end"
                   onClick={() => dispatch(deleteReviewThunk(review._id))}
           ></button>
-        }
+        }</div>
       </li>
   );
 };

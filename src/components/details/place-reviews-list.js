@@ -130,7 +130,6 @@ const PlaceReviewItem = ({review}) => {
             </div>
         }
 
-
         {!!review.reply &&
             <div className="row">
               <div className="col-10">

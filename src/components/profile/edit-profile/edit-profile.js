@@ -31,7 +31,6 @@ const EditProfile = () => {
 
         <div className="row mt-2 position-relative">
           <img className="img-fluid w-100" src={require(`../image/mapBanner.jpeg`)} style={{"width":"800px", "height":"200px"}} alt=""/>
-          {/*<img style={{"width":"800px", "height":"200px"}} src={profile?.bannerPicture} alt=""/>*/}
 
           <div className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4" >
             <img className="rounded-circle border-secondary border-5" width="134px" height="134px" src={require(`../image/admin.png`)} alt=""/>
