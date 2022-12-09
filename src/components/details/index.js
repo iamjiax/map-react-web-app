@@ -9,17 +9,12 @@ import {findPlaceLikesCountThunk} from "../../services/likes-thunk";
 import {createReviewThunk} from "../../services/reviews-thunk";
 import {
   createPlaceinfoThunk,
-  findPlaceinfoByPlaceThunk, updatePlaceinfoThunk
+  findPlaceinfoByPlaceThunk,
+  updatePlaceinfoThunk
 } from "../../services/placeinfo-thunk";
 import PlaceReviewsList from "./place-reviews-list";
 import './details.css';
 import {UserRoles} from "../../util/user-roles";
-import Navigation from "../navigation";
-import {
-  createNotification,
-  updatePlaceinfo
-} from "../../services/placeinfo-service";
-import {updateUserThunk} from "../../services/user-thunks";
 
 function DetailsPage() {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -63,7 +58,7 @@ function DetailsPage() {
 
   return (
       detailLoaded && (
-          <div className={"container1"}>
+          <div className={"container"}>
             <div className="box1 align-content-center">
               <div className="col-9 text-sec ">
                 <div className="avatar position-relative">
@@ -115,7 +110,9 @@ function DetailsPage() {
                 <div className="element">
                   <div className="stats">
                     <ul className="wikisite">
-                      <a href={placeDetail.wikipedia}>Wikipedia</a>
+                      <a href={placeDetail.wikipedia}>
+                        <i className="bi bi-wikipedia fw-bold fs-3"></i>
+                      </a>
                     </ul>
                   </div>
                 </div>
@@ -124,19 +121,23 @@ function DetailsPage() {
                   <div className="stats">
                     <ul className="website">
                       {placeDetail.url && <a
-                          href={extractUrl(placeDetail.url)}>Website</a>}
+                          href={extractUrl(placeDetail.url)}>
+                        <i className="bi bi-globe-americas fw-bold fs-3"></i>
+                      </a>}
                     </ul>
                   </div>
                 </div>
 
               </div>
 
-              {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id === placeinfo?.manager._id) &&
+              {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id
+                      === placeinfo?.manager._id) &&
                   <div className="row">
                     <h3>Information from manager</h3>
                     {placeinfo?.notification}
                     <div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">
-                      <input className="form-control border-0" id="edit-notification" type="text"
+                      <input className="form-control border-0"
+                             id="edit-notification" type="text"
                              value={notification}
                              onChange={(event) => {
                                setNotification(event.target.value)
