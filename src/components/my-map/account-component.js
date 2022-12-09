@@ -1,22 +1,26 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useMap} from "react-leaflet";
 import {logoutThunk} from "../../services/user-thunks";
-import EditProfile from "../profile/edit-profile/edit-profile";
-
+import {findLastNReviewsByUserThunk} from "../../services/reviews-thunk";
 
 const AccountComponent = () => {
   const {currentUser} = useSelector(state => state.userReducer);
   const [displayProfile, setDisplayProfile] = useState(false);
   const map = useMap();
-
+  const {reviews} = useSelector(state => state.reviewsReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser) {
+      dispatch(findLastNReviewsByUserThunk({uid: currentUser._id, limit: 1}))
+    }
+  }, [currentUser]);
 
   const handleLogoutBtn = () => {
     dispatch(logoutThunk())
   }
-
   return (
       <div className="leaflet-control leaflet-top leaflet-right"
            onMouseOver={() => {
@@ -52,26 +56,36 @@ const AccountComponent = () => {
 
                 <div className="card-body">
                   <h5 className="card-title"></h5>
-                    <font className="card-text" face="Georgia"size = "4" color="#1e90ff">{currentUser.firstname}</font>
-                    <p className="card-text">{currentUser.location}</p>
-                    <small className="card-text">{currentUser.bio}</small>
+                  <font className="card-text" face="Georgia" size="4"
+                        color="#1e90ff">{currentUser.firstname}</font>
+                  <p className="card-text">{currentUser.location}</p>
+                  <small className="card-text">{currentUser.bio}</small>
 
                 </div>
                 <ul className="list-group list-group-flush">
-                    <Link to="/profile" className={`list-group-item d-flex`}>
-                        <i className="bi bi-person pe-2"></i><span>Profile</span>
-                    </Link>
-                    <Link to="/profile/likes" className={`list-group-item d-flex
+                  <Link to="/profile" className={`list-group-item d-flex`}>
+                    <i className="bi bi-person pe-2"></i><span>Profile</span>
+                  </Link>
+                  <Link to="/profile" className={`list-group-item d-flex
                             `}>
-                        <i className="bi bi-heart-fill pe-2"></i><span>Likes</span>
+                    <i className="bi bi-heart-fill pe-2"></i><span>Likes</span>
+                  </Link>
+                  <div className="list-group-item">
+                    <Link to="/profile" className="text-decoration-none">
+                      <i className="bi bi-chat-square-text pe-2"></i><span>Reviews</span>
                     </Link>
-                    <Link to="/profile/reviews" className={`list-group-item d-flex
-                            `}>
-                        <i className="bi bi-chat-square-text pe-2"></i><span>Reviews</span>
-                    </Link>
+                    {reviews[0] &&
+                        <div className="row ms-3">
+                          <Link to={`/details/${reviews[0].place.xid}`}>{
+                            reviews[0].place.name}
+                          </Link>
+                          <span>{reviews[0]?.content}</span>
+                        </div>}
+                  </div>
                 </ul>
                 <div className="card-body">
-                  <Link to="/profile/edit-profile" className="btn btn-primary text-white">
+                  <Link to="/profile/edit-profile"
+                        className="btn btn-primary text-white">
                     Manage your Account
                   </Link>
                   <button

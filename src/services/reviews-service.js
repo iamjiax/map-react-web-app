@@ -38,3 +38,9 @@ export const findReviewsByUser = async (uid) => {
   const response = await axios.get(url);
   return response.data;
 }
+
+export const findLastNReviewsByUser = async (uid, limit) => {
+  const url = `${Constants.REVIEWS_API}/user/${uid}/${limit}`;
+  const response = await axios.get(url);
+  return response.data;
+}
