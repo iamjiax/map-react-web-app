@@ -35,7 +35,7 @@ const userSlice = createSlice({
       state.currentUser = action.payload
     },
     [registerThunk.rejected]: (state, action) => {
-      state.userServiceError = action.payload
+      state.userServiceError = "You are already registered, please login."
       state.currentUser = null
     },
     [logoutThunk.fulfilled]: (state, action) => {

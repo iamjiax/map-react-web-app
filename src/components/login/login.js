@@ -15,7 +15,9 @@ const Login = () => {
     const handleLoginBtn = () => {
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
-        navigate(-1)
+        if(!userServiceError) {
+            navigate(-1)
+        }
     }
     return(
         <div className="container" style={{paddingTop: "50px"}}>
