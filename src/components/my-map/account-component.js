@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useMap} from "react-leaflet";
 import {logoutThunk} from "../../services/user-thunks";
 import {findLastNReviewsByUserThunk} from "../../services/reviews-thunk";
+import {UserRoles} from "../../util/user-roles";
 
 const AccountComponent = () => {
   const {currentUser} = useSelector(state => state.userReducer);
@@ -70,18 +71,20 @@ const AccountComponent = () => {
                             `}>
                     <i className="bi bi-heart-fill pe-2"></i><span>Likes</span>
                   </Link>
-                  <div className="list-group-item">
-                    <Link to="/profile" className="text-decoration-none">
-                      <i className="bi bi-chat-square-text pe-2"></i><span>Reviews</span>
-                    </Link>
-                    {reviews[0] &&
-                        <div className="row ms-3">
-                          <Link to={`/details/${reviews[0].place.xid}`}>{
-                            reviews[0].place.name}
-                          </Link>
-                          <span>{reviews[0]?.content}</span>
-                        </div>}
-                  </div>
+                  {currentUser?.role === UserRoles.VISITOR &&
+                    <div className="list-group-item">
+                      <Link to="/profile" className="text-decoration-none">
+                        <i className="bi bi-chat-square-text pe-2"></i><span>Reviews</span>
+                      </Link>
+                      {reviews[0] &&
+                          <div className="row ms-3">
+                            <Link to={`/details/${reviews[0].place.xid}`}>{
+                              reviews[0].place.name}
+                            </Link>
+                            <span>{reviews[0]?.content}</span>
+                          </div>}
+                    </div>
+                  }
                 </ul>
                 <div className="card-body">
                   <Link to="/profile/edit-profile"
