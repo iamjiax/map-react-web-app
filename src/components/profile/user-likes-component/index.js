@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {
   findLikesByUserThunk,
 } from "../../../services/likes-thunk";
@@ -17,7 +17,16 @@ const UserLikesComponent = ({user}) => {
 
   return user && (
       <div>
-        <h3>Favorite places</h3>
+        {/*<h3>Favorite places</h3>*/}
+        <div className="row mt-5 mb-3">
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+          <h5 className="col-auto">Favorite places</h5>
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+        </div>
         <ul className="list-group">
           {userLikes.map(like => <PlaceItem key={like.place.xid} place={like.place}/>)}
         </ul>

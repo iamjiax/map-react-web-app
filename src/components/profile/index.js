@@ -27,10 +27,8 @@ const ProfilePage = () => {
                 <img className="img-fluid w-100"
                      style={{"width": "800px", "height": "200px"}}
                      src={require(`./image/mapBanner.jpeg`)} alt="banner"/>
-                {/*<img style={{"width":"800px", "height":"200px"}} src={require(`src/components/profile/image/mapBanner.jpeg`)} alt="banner"/>*/}
 
-                <div
-                    className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4">
+                <div className="position-absolute top-100 translate-middle-y d-flex justify-content-between px-4">
                   <img className="rounded-circle text-secondary border-5"
                        style={{
                          "width": "130px",
@@ -48,24 +46,16 @@ const ProfilePage = () => {
 
               <PrivateProfileComponent user={currentUser}/>
               <UserLikesComponent user={currentUser}/>
-              <UserReviewsComponent user={currentUser}/>
-              {/* determinate different user roles */}
               {
                 currentUser.role === UserRoles.MANAGER ? <div>
                   <ManagerPlaceinfoComponent user={currentUser}/></div> : <></>
-                //manage place info  ex: edit time 9:00am - 5:00pm  ex: edit info
-                //able to reply reviews => on details page
               }
               {
-                currentUser.role === UserRoles.ADMIN ? <div><UserList/></div>
-                    : <></>
-                //list of all users
-                //able to edit and delete
+                currentUser.role === UserRoles.ADMIN ? <div><UserList/></div> : <></>
               }
               {
-                currentUser.role === UserRoles.VISITOR ? <div><h3>display list
-                  of reviews</h3></div> : <></>
-                //reviews
+                currentUser.role === UserRoles.VISITOR ? <div>
+                  <UserReviewsComponent user={currentUser}/></div> : <></>
               }
             </div>
           </div>

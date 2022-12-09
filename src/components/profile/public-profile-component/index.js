@@ -1,4 +1,5 @@
 import {useSelector} from "react-redux";
+import {UserRoles} from "../../../util/user-roles";
 
 const PublicProfileComponent = ({user}) => {
   // const {currentUser} = useSelector((state) => state.userReducer)
@@ -13,12 +14,14 @@ const PublicProfileComponent = ({user}) => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="col-md-4 mb-3">
-                <label htmlFor="userInfo">Location</label>
-                <div className="form-control mb-2">{user?.location}</div>
+            {user?.role === UserRoles.VISITOR &&
+              <div className="form-row">
+                <div className="col-md-4 mb-3">
+                  <label htmlFor="userInfo">Location</label>
+                  <div className="form-control mb-2">{user?.location}</div>
+                </div>
               </div>
-            </div>
+            }
 
             <div className="form-row">
               <div className="col-md-4 mb-3">

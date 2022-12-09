@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {
   deleteReviewThunk,
   findReviewsByUserThunk
@@ -17,7 +17,16 @@ const UserReviewsComponent = ({user}) => {
   }, [user]);
   return user && (
       <div>
-        <h3>Reviews</h3>
+        {/*<h3>Reviews</h3>*/}
+        <div className="row mt-5 mb-3">
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+          <h5 className="col-auto">Reviews</h5>
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+        </div>
         <ul className="list-group">
           {reviews.map(review => <ReviewItem key={review._id} review={review}/>)}
         </ul>

@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {UserRoles} from "../../../util/user-roles";
 import {findPlaceinfoByManagerThunk} from "../../../services/placeinfo-thunk";
 import {Link} from "react-router-dom";
@@ -16,7 +16,16 @@ const ManagerPlaceinfoComponent = ({user}) => {
 
   return user && (
       <div>
-        <h3>Managed Places</h3>
+        {/*<h3>Managed Places</h3>*/}
+        <div className="row mt-5 mb-3">
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+          <h5 className="col-auto">Managed Places</h5>
+          <div className="col">
+            <hr className="border border-2 opacity-50"/>
+          </div>
+        </div>
         <ul className="list-group">
           {placeinfoByManager.map(placeinfo =>
               <PlaceinfoItem key={placeinfo.place.xid}
