@@ -15,7 +15,7 @@ const Navigation = () => {
     dispatch(findLikeThunk({uid: null, xid: null}))
   }
   return displayNav && (
-      <div className="row position-fixed ms-0 w-100 navbar border-bottom bg-white"
+      <div className="row position-fixed ms-0 w-100 navbar border-bottom bg-light"
       style={{zIndex:10}}>
         <ul className="nav nav-pills ps-5 pe-5">
           <li className="nav-item">

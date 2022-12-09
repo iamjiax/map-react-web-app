@@ -58,9 +58,10 @@ function DetailsPage() {
 
   return (
       detailLoaded && (
-          <div className={"container"}>
-            <div className="box1 align-content-center">
-              <div className="col-9 text-sec ">
+          <div className="container" style={{paddingTop: "70px"}}>
+
+            <div className="row">
+              <div className="col-auto">
                 <div className="avatar position-relative">
                   <img className=" rounded-circle"
                        style={{
@@ -71,120 +72,151 @@ function DetailsPage() {
                        }}
                        src={placeDetail.preview.source} alt="..."/>
                 </div>
-                <div className="heading col-3 d-flex align-items-center">
-                  <div className="">
-                    <h3>{placeDetail.name}</h3>
-                  </div>
-
-                  <div className="likes col-2 d-flex align-items-center">
-                    <LikeIcon place={placeDetail}/>
-                    <div className="ms-2">{placeLikesCount}</div>
-                  </div>
-                </div>
-                <div className="sub-heading">
-                  <p>{formatKinds(placeDetail.kinds)}</p>
-                </div>
-              </div>
-              <br/>
-
-              {((currentUser?.role === UserRoles.MANAGER) && !placeinfo) &&
-                  <button className="btn btn-primary ms-5"
-                          onClick={handleManagePlaceBtn}>
-                    Apply to Manage
-                  </button>
-              }
-
-              <div className="row contents1">
-                <div className="col introduce">
-                  {parse(placeDetail.wikipedia_extracts.html)}
-                </div>
-                <div className="col image">
-                  <img src={placeDetail.preview.source}
-                       style={{
-                         width: "auto", maxWidth: "100%", height: "auto"
-                       }}/>
-                </div>
               </div>
 
-              <div className="table">
-                <div className="element">
-                  <div className="stats">
-                    <ul className="wikisite">
-                      <a href={placeDetail.wikipedia}>
-                        <i className="bi bi-wikipedia fw-bold fs-3"></i>
-                      </a>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="element">
-                  <div className="stats">
-                    <ul className="website">
-                      {placeDetail.url && <a
-                          href={extractUrl(placeDetail.url)}>
-                        <i className="bi bi-globe-americas fw-bold fs-3"></i>
-                      </a>}
-                    </ul>
-                  </div>
-                </div>
-
-              </div>
-
-              {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id
-                      === placeinfo?.manager._id) &&
+              <div className="col-6 d-flex align-items-center">
+                <div>
                   <div className="row">
-                    <h3>Information from manager</h3>
-                    {placeinfo?.notification}
-                    <div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">
-                      <input className="form-control border-0"
-                             id="edit-notification" type="text"
-                             value={notification}
-                             onChange={(event) => {
-                               setNotification(event.target.value)
-                             }}
-                             placeholder="Notification"/>
-
-                      <button
-                          className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
-                          onClick={updatePlaceInfoHandler}>Notification
-                      </button>
+                    <div className="heading col-auto d-flex align-items-center">
+                      <h3>{placeDetail.name}</h3>
                     </div>
-                  </div>}
-
-              <div className="row2">
-                {(currentUser?.role === UserRoles.VISITOR) &&
-                    <div className="col-10">
-                      <small>Leave a review</small>
-                      <textarea className="form-control border-0"
-                                onChange={(e) => setReviewContent(
-                                    e.target.value)}
-                                value={reviewContent}
-                                placeholder="Highlight your experience" style={{
-                        width: "850px", overflow: "visible"
-                      }}
-                      ></textarea>
-                      <div className="button1">
-                        <button
-                            className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
-                            onClick={handlePostReviewBtn}>Post Review
-                        </button>
-                        <div className="text-primary fs-2">
-                          <i className="bi bi-card-image me-3"></i>
-                          <i className="bi bi-filetype-gif me-3"></i>
-                          <i className="bi bi-emoji-smile me-3"></i>
-                          <i className="bi bi-geo-alt"></i>
-                        </div>
-                      </div>
-
+                    <div className="likes col-auto d-flex align-items-center">
+                      <LikeIcon place={placeDetail}/>
+                      <div className="ms-2">{placeLikesCount}</div>
                     </div>
-                }
-                <div className="col-12">
-                  <hr/>
+                  </div>
+                  <div className="row">
+                    <div className="font-times-new-roman">
+                      {formatKinds(placeDetail.kinds)}
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-                <PlaceReviewsList/>
+              <div className="col ms-auto d-flex align-items-center">
+                {((currentUser?.role === UserRoles.MANAGER) && !placeinfo) &&
+                    <button className="btn btn-primary ms-auto"
+                            onClick={handleManagePlaceBtn}>
+                      Apply to Manage
+                    </button>
+                }
               </div>
             </div>
+
+            <div className="row mt-4">
+              <div className="col-6 ps-4">
+                <div className="row font-times-new-roman">
+                  {parse(placeDetail.wikipedia_extracts.html)}
+                </div>
+                <div className="row mt-2">
+                  <div className="col-auto">
+                    {placeDetail.wikipedia &&
+                        <a href={placeDetail.wikipedia}>
+                          <i className="bi bi-wikipedia fw-bold fs-4"></i>
+                        </a>
+                    }
+                  </div>
+                  <div className="col-auto">
+                    {placeDetail.url &&
+                        <a href={extractUrl(placeDetail.url)}>
+                          <i className="bi bi-browser-chrome fw-bold fs-4"></i>
+                        </a>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div
+                  className="col-5 ms-auto d-flex align-items-center justify-content-center">
+                <img className="rounded"
+                     src={placeDetail.preview.source}
+                     style={{
+                       width: "auto", maxWidth: "100%", height: "auto"
+                     }}/>
+              </div>
+            </div>
+
+            {placeinfo?.notification &&
+                <div>
+                  <div className="row mt-5 mb-3">
+                    <div className="col">
+                      <hr className="border border-2 opacity-50"/>
+                    </div>
+                    <h5 className="col-auto">Information from manager</h5>
+                    <div className="col">
+                      <hr className="border border-2 opacity-50"/>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="ms-4">
+                      {placeinfo?.notification}
+                    </div>
+                  </div>
+                </div>
+            }
+
+            {(currentUser?.role === UserRoles.MANAGER) &&
+                (currentUser?._id === placeinfo?.manager._id) &&
+                <div className="row mt-3">
+                  <div className="col-11 ms-4 mt-3">
+                    <textarea className="form-control"
+                              id="edit-notification"
+                              type="text"
+                              value={notification}
+                              onChange={(event) => {
+                                setNotification(event.target.value)
+                              }}
+                              placeholder="Input Notification here...">
+                    </textarea>
+                    <button
+                        className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
+                        onClick={updatePlaceInfoHandler}>Publish
+                    </button>
+                  </div>
+                </div>
+            }
+
+            <div className="row mt-5 mb-3">
+              <div className="col">
+                <hr className="border border-2 opacity-50"/>
+              </div>
+              <h5 className="col-auto">Reviews</h5>
+              <div className="col">
+                <hr className="border border-2 opacity-50"/>
+              </div>
+            </div>
+
+            <div className="row px-3">
+              {(currentUser?.role === UserRoles.VISITOR) &&
+                  <div className="ps-0">
+                    {/*<small>Leave a review</small>*/}
+                    <textarea className="form-control"
+                              onChange={(e) => setReviewContent(
+                                  e.target.value)}
+                              value={reviewContent}
+                              placeholder="Highlight your experience..."
+                              style={{overflow: "visible"}}
+                    ></textarea>
+                    <div className="row mt-2 mb-5">
+                      <div className="col-auto text-primary fs-2">
+                        <i className="bi bi-card-image me-3"></i>
+                        <i className="bi bi-filetype-gif me-3"></i>
+                        <i className="bi bi-emoji-smile me-3"></i>
+                        <i className="bi bi-geo-alt"></i>
+                      </div>
+                      <div className="col-auto ms-auto">
+                        <button
+                            className="rounded-pill btn btn-primary float-end fw-bold"
+                            onClick={handlePostReviewBtn}>Post Review
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+              }
+
+              <PlaceReviewsList/>
+            </div>
+            <div className="mb-5"></div>
           </div>
       )
   );
