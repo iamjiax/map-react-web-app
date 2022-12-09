@@ -19,12 +19,18 @@ const userSlice = createSlice({
     publicProfile: null,
     userServiceError: null,
   },
+  reducers: {
+    resetErrorMessage(state, action) {
+      state.userServiceError = null
+    }
+  },
   extraReducers: {
     [findAllUsersThunk.fulfilled]: (state, action) => {
       state.users = action.payload
       state.loading = false
     },
     [loginThunk.fulfilled]: (state, action) => {
+      state.userServiceError = null
       state.currentUser = action.payload
     },
     [loginThunk.rejected]: (state, action) => {
@@ -32,6 +38,7 @@ const userSlice = createSlice({
       state.currentUser = null
     },
     [registerThunk.fulfilled]: (state, action) => {
+      state.userServiceError = null
       state.currentUser = action.payload
     },
     [registerThunk.rejected]: (state, action) => {
@@ -56,5 +63,6 @@ const userSlice = createSlice({
   }
 });
 
+export const {resetErrorMessage} = userSlice.actions;
 export default userSlice.reducer;
 

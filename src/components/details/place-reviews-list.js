@@ -88,10 +88,10 @@ const PlaceReviewItem = ({review}) => {
         </div>
         {!isEdit &&
             <div className="row">
-              <div className="col-10">
-                {review.content}
+              <div className="col-8 col-md-9 col-lg-10">
+                  <p>{review.content}</p>
               </div>
-              <div className="col-2 ms-auto">
+              <div className="col-4 col-md-3 col-lg-2 ms-auto">
                 {(currentUser?._id === review.user._id) &&
                     <button className="btn btn-primary float-end"
                             onClick={handleEditBtn}>edit review

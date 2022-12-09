@@ -1,9 +1,10 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../../services/user-thunks";
 import './login.css';
+import {resetErrorMessage} from "../../reducers/user-reducer";
 
 const Login = () => {
     const {userServiceError} = useSelector(state => state.userReducer);
@@ -12,12 +13,15 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    useEffect(() => {
+        dispatch(resetErrorMessage())
+    }, []);
     const handleLoginBtn = () => {
         const loginUser = {username, password}
         dispatch(loginThunk(loginUser))
-        if(!userServiceError) {
-            navigate(-1)
-        }
+        // if(!userServiceError) {
+        //     navigate(-1)
+        // }
     }
     return(
         <div className="container" style={{paddingTop: "50px"}}>

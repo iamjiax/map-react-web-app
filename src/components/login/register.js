@@ -1,24 +1,32 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../../services/user-thunks";
 import {Link, useNavigate} from "react-router-dom";
 import './register.css';
 import {UserRoles} from "../../util/user-roles";
+import {resetErrorMessage} from "../../reducers/user-reducer";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [validatePassword, setValidatePassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [validatePassword, setValidatePassword] = useState("");
   const [role, setRole] = useState(UserRoles.VISITOR);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {userServiceError} = useSelector(state => state.userReducer);
+  useEffect(() => {
+    dispatch(resetErrorMessage())
+  }, []);
   const handleRegisterBtn = () => {
+    if (!password) {
+      setError('Please enter a password.')
+      return
+    }
     if (password !== validatePassword) {
       setError('Passwords must match')
       return
@@ -27,15 +35,15 @@ const Register = () => {
     const newUser = {
       username: username,
       password: password,
-      email: email,
-      firstname: firstname,
-      lastname: lastname,
+      email: email? email : undefined,
+      firstname: firstname? firstname : undefined,
+      lastname: lastname? lastname: undefined,
       role: role
     }
     dispatch(registerThunk(newUser))
-    if(!userServiceError) {
-      navigate(-2)
-    }
+    // if(!userServiceError) {
+    //   navigate(-2)
+    // }
     // if (currentUser){
     // return (<Navigate to = {'/profile'}/>)}
   }
@@ -61,7 +69,7 @@ const Register = () => {
           <form className="container">
             <div className="form-check"></div>
             <div className="form-group text-left">
-              <label htmlFor="exampleInputUserName1">User Name</label>
+              <label htmlFor="exampleInputUserName1">User Name*</label>
               <input
                   type="text"
                   className="form-control mb-2"
@@ -116,7 +124,7 @@ const Register = () => {
 
             <div className="form-group text-left">
 
-              <label htmlFor="exampleInputPassword1">Password</label>
+              <label htmlFor="exampleInputPassword1">Password*</label>
               <input
                   type="password"
                   className="form-control mb-2"
@@ -133,7 +141,7 @@ const Register = () => {
 
             <div className="form-group text-left">
 
-              <label htmlFor="exampleInputPassword1">Confirm Password</label>
+              <label htmlFor="exampleInputPassword1">Confirm Password*</label>
               <input
                   type="password"
                   className="form-control mb-2"
@@ -145,7 +153,7 @@ const Register = () => {
             </div>
 
             <div className="roleSection">
-              <label htmlFor="roleSelectId">Select a role</label>
+              <label htmlFor="roleSelectId">Select a role*</label>
               <select
                   defaultValue={UserRoles.VISITOR}
                   className="form-select"
