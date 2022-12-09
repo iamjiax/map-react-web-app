@@ -7,7 +7,6 @@ import {
   updateReviewThunk
 } from "../../services/reviews-thunk";
 import {UserRoles} from "../../util/user-roles";
-import {updatePlaceinfoThunk} from "../../services/placeinfo-thunk";
 
 const PlaceReviewsList = () => {
   const {reviews} = useSelector(state => state.reviewsReducer);
@@ -36,7 +35,8 @@ const PlaceReviewItem = ({review}) => {
   const cancelReplyBtn = () => setIsReply(false);
   const [isEdit, setIsEdit] = useState(false);
   const cancelEditBtn = () => setIsEdit(false);
-  const [replyContent, setReplyContent] = useState(review.reply? review.reply.content : "");
+  const [replyContent, setReplyContent] = useState(
+      review.reply ? review.reply.content : "");
   const [content, setReviewContent] = useState(review.content);
   const handleReplyBtn = () => setIsReply(true);
   const handleEditBtn = () => {
@@ -86,56 +86,50 @@ const PlaceReviewItem = ({review}) => {
             }
           </div>
         </div>
+        {!isEdit &&
+            <div className="row">
+              <div className="col-10">
+                {review.content}
+              </div>
+              <div className="col-2 ms-auto">
+                {(currentUser?._id === review.user._id) &&
+                    <button className="btn btn-primary float-end"
+                            onClick={handleEditBtn}>edit review
+                    </button>
+                }
 
-        <div className="row">
-          <div className="col-10">
-            {review.content}
-            {/*<input className="form-control border-0" id="edit-review" type="text"*/}
-            {/*       value={content}*/}
-            {/*       onChange={(event) => {*/}
-            {/*         setReviewContent(event.target.value)*/}
-            {/*       }}*/}
-            {/*       placeholder="edit review"/>*/}
-          </div>
-          {/*<div className="col-2 ms-auto">*/}
-          <div className="ms-auto">
-            {/******* review edit btn here *********/}
-            {/*<div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">*/}
-            <div className="col-md-10 col-sm-6 ms-4 mb-3 mt-4 px-2">
-              {(currentUser?._id === review.user._id) &&
-                <button className="btn btn-primary float-end"
-                onClick={handleEditBtn}>edit review
-                </button>
-              }
+                {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id
+                        === placeinfo?.manager._id)
+                    && !review.reply
+                    && !isReply &&
+                    <button className="btn btn-primary float-end"
+                            onClick={handleReplyBtn}>
+                      reply
+                    </button>
+                }
 
-              {isEdit &&
-                  <div className="mt-3">
+              </div>
+            </div>
+        }
+
+        {isEdit &&
+            <div className="mt-3">
                 <textarea className="form-control"
                           style={{overflow: "hidden"}}
                           value={content}
-                          onChange={(event) => setReviewContent(event.target.value)}/>
-                    <div className="mt-3">
-                      <button onClick={cancelEditBtn} type="button"
-                              className="btn btn-secondary float-end">Cancel
-                      </button>
-                      <button onClick={saveEditBtn} type="button"
-                              className="btn btn-primary float-end me-3">Save
-                      </button>
-                    </div>
-                  </div>
-              }
-            </div>
-
-            {(currentUser?.role === UserRoles.MANAGER) && (currentUser?._id === placeinfo?.manager._id)
-                && !review.reply
-                && !isReply &&
-                <button className="btn btn-primary float-end"
-                        onClick={handleReplyBtn}>
-                  reply
+                          onChange={(event) => setReviewContent(
+                              event.target.value)}/>
+              <div className="mt-3">
+                <button onClick={cancelEditBtn} type="button"
+                        className="btn btn-secondary float-end">Cancel
                 </button>
-            }
-          </div>
-        </div>
+                <button onClick={saveEditBtn} type="button"
+                        className="btn btn-primary float-end me-3">Save
+                </button>
+              </div>
+            </div>
+        }
+
 
         {!!review.reply &&
             <div className="row">
