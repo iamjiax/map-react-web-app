@@ -87,7 +87,7 @@ const EditProfile = () => {
             <label className="ms-3 text-secondary border-0"
                    htmlFor="edit-profile-dateOfBirth">Date of Birth</label>
             <input className="form-control border-0"
-                   id="edit-profile-dateOfBirth" type="text"
+                   id="edit-profile-dateOfBirth" type="date"
                 value={curProfile.dateOfBirth}
                    onChange={(event) => setCurProfile({...curProfile, dateOfBirth: event.target.value})}
                    placeholder="mm/dd/yyyy"/>
