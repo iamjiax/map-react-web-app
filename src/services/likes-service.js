@@ -34,3 +34,10 @@ export const deleteLike = async (like) => {
   const response = await axios.delete(url);
   return response.data;
 }
+
+export const findMostLikedPlaces = async (limit) => {
+  const limitCount = limit === undefined? 10 : limit;
+  const url = `${Constants.LIKES_API}/most-liked-places/${limitCount}`;
+  const response = await axios.get(url);
+  return response.data;
+};

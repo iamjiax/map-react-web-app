@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {configureStore,} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import userReducer from './reducers/user-reducer';
@@ -26,7 +26,7 @@ const store = configureStore(
         placeDetailReducer: placeDetailReducer,
         placeinfoReducer: placeinfoReducer,
         likesReducer: likesReducer,
-        reviewsReducer: reviewsReducer
+        reviewsReducer: reviewsReducer,
       },
       middleware: getDefaultMiddleware =>
           getDefaultMiddleware({

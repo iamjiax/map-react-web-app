@@ -13,7 +13,7 @@ const LikeIcon = ({place}) => {
   const {userLikePlace} = useSelector(state => state.likesReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {xid, name} = place;
+  const {xid, name, kinds, point} = place;
   useEffect(() => {
     if (currentUser) {
       dispatch(findLikeThunk({uid: currentUser._id, xid: xid}))
@@ -28,7 +28,7 @@ const LikeIcon = ({place}) => {
     if (currentUser) {
       const likeToToggle = {
         user: {_id: currentUser._id, username: currentUser.username},
-        place: {xid: xid, name: name},
+        place: {xid: xid, name: name, kinds: kinds, point: point},
       }
       userLikePlace ? dispatch(userUnlikePlaceThunk(likeToToggle)) :
           dispatch(userLikePlaceThunk(likeToToggle));

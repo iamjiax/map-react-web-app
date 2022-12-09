@@ -25,3 +25,8 @@ export const userUnlikePlaceThunk = createAsyncThunk(
     'likes/userUnlikePlace', async (like) =>
         await service.deleteLike(like)
 );
+
+export const findMostLikedPlacesThunk = createAsyncThunk(
+    'likes/findMostLikedPlaces', async (limit) =>
+        await service.findMostLikedPlaces(limit)
+);

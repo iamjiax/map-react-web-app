@@ -4,13 +4,15 @@ import {
   findPlaceLikesCountThunk,
   findLikesByUserThunk,
   userLikePlaceThunk,
-  userUnlikePlaceThunk
+  userUnlikePlaceThunk,
+  findMostLikedPlacesThunk
 } from "../services/likes-thunk";
 
 const initialState = {
   placeLikesCount: 0,
   userLikes: [],
-  userLikePlace: false
+  userLikePlace: false,
+  mostLikedPlaces: []
 }
 const likesSlice = createSlice({
   name: "likes",
@@ -30,6 +32,9 @@ const likesSlice = createSlice({
     },
     [userUnlikePlaceThunk.fulfilled]: (state, {payload}) => {
       state.userLikePlace = false;
+    },
+    [findMostLikedPlacesThunk.fulfilled]: (state, {payload}) => {
+      state.mostLikedPlaces = payload;
     }
   }
 });
