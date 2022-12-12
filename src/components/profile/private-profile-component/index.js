@@ -55,12 +55,15 @@ const PrivateProfileComponent = ({user}) => {
                 </div>
               }
 
-              <div className="form-row">
-                <div className="col-md-4 mb-3">
-                  <label htmlFor="userInfo">Bio</label>
-                  <div className="form-control mb-2">{currentUser?.bio}</div>
-                </div>
-              </div>
+              {currentUser?.role !== UserRoles.ADMIN &&
+                  <div className="form-row">
+                    <div className="col-md-4 mb-3">
+                      <label htmlFor="userInfo">Bio</label>
+                      <div
+                          className="form-control mb-2">{currentUser?.bio}</div>
+                    </div>
+                  </div>
+              }
 
             </form>
           </div>
