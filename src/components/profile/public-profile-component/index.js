@@ -22,13 +22,14 @@ const PublicProfileComponent = ({user}) => {
                 </div>
               </div>
             }
-
-            <div className="form-row">
-              <div className="col-md-4 mb-3">
-                <label htmlFor="userInfo">Bio</label>
-                <div className="form-control mb-2">{user?.bio}</div>
-              </div>
-            </div>
+            {user?.role !== UserRoles.ADMIN &&
+                <div className="form-row">
+                  <div className="col-md-4 mb-3">
+                    <label htmlFor="userInfo">Bio</label>
+                    <div className="form-control mb-2">{user?.bio}</div>
+                  </div>
+                </div>
+            }
           </form>
         </div>
       </div>
